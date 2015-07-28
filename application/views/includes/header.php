@@ -103,7 +103,7 @@
               </a>
             </li>
             <?php
-            if($role == ROLE_ADMIN || $role == ROLE_TICKETER)
+            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {
             ?>
             <li class="treeview">
