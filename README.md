@@ -8,7 +8,7 @@ The code is uploaded to demonstrate the simple role based application using Code
 Download the code from repository.
 Unzip the zip file.
 
-Open browser; goto localhost/phpmyadmin.
+Open browser; goto (localhost/phpmyadmin).
 
 Create a database with name "cias" and import the file "cias.sql" in that database.
 
@@ -22,7 +22,7 @@ OR
 
 **XAMPP : c:/xampp/htdocs/cias**
 
-Open browser; goto localhost/cias and press enter:
+Open browser; goto (localhost/cias) and press enter:
 
 The login screen will appear.
 
