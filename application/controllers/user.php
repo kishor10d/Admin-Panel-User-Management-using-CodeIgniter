@@ -1,5 +1,8 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * This class is used to handle user operations
+ */
 class User extends CI_Controller
 {
     
