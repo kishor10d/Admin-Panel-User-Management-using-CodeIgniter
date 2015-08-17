@@ -22,48 +22,48 @@
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>addNewUser" method="post">
+                    <form role="form" id="addUser" action="<?php echo base_url() ?>addNewUser" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
-                                        <label for="inputName">Full Name</label>
-                                        <input type="text" class="form-control" id="inputName" placeholder="Full Name" name="name">    
+                                        <label for="fname">Full Name</label>
+                                        <input type="text" class="form-control required" id="fname" name="fname" maxlength="128">
                                     </div>
                                     
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="inputEmail1" placeholder="Enter email" name="email">
+                                        <label for="email">Email address</label>
+                                        <input type="text" class="form-control required email" id="email"  name="email" maxlength="128">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="password" maxlength="10">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control required" id="password"  name="password" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputPassword2">Confirm Password</label>
-                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm Password" name="cpassword" maxlength="10">
+                                        <label for="cpassword">Confirm Password</label>
+                                        <input type="password" class="form-control required equalTo" id="cpassword" name="cpassword" maxlength="10">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputMobile">Mobile Number</label>
-                                        <input type="text" class="form-control" id="inputMobile" placeholder="Mobile Number" name="mobile" maxlength="10">
+                                        <label for="mobile">Mobile Number</label>
+                                        <input type="text" class="form-control required digits" id="mobile" name="mobile" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputRole">Role</label>
-                                        <select class="form-control" id="inputRole" name="role">
+                                        <label for="role">Role</label>
+                                        <select class="form-control required" id="role" name="role">
                                             <option value="0">Select Role</option>
                                             <?php
                                             if(!empty($roles))
@@ -84,6 +84,7 @@
     
                         <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
+                            <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>
                 </div>
@@ -121,3 +122,4 @@
     </section>
     
 </div>
+<script src="<?php echo base_url(); ?>assets/js/addUser.js" type="text/javascript"></script>
