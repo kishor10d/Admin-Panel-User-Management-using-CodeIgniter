@@ -45,49 +45,49 @@ if(!empty($userInfo))
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>editUser" method="post">
+                    <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
-                                        <label for="inputName">Full Name</label>
-                                        <input type="text" class="form-control" id="inputName" placeholder="Full Name" name="name" value="<?php echo $name; ?>">
+                                        <label for="fname">Full Name</label>
+                                        <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" value="<?php echo $name; ?>" maxlength="128">
                                         <input type="hidden" value="<?php echo $userId; ?>" name="userId" />    
                                     </div>
                                     
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="inputEmail1" placeholder="Enter email" name="email" value="<?php echo $email; ?>">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $email; ?>" maxlength="128">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="password" maxlength="10">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputPassword2">Confirm Password</label>
-                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm Password" name="cpassword" maxlength="10">
+                                        <label for="cpassword">Confirm Password</label>
+                                        <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="cpassword" maxlength="10">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputMobile">Mobile Number</label>
-                                        <input type="text" class="form-control" id="inputMobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
+                                        <label for="mobile">Mobile Number</label>
+                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputRole">Role</label>
-                                        <select class="form-control" id="inputRole" name="role">
+                                        <label for="role">Role</label>
+                                        <select class="form-control" id="role" name="role">
                                             <option value="0">Select Role</option>
                                             <?php
                                             if(!empty($roles))
@@ -108,6 +108,7 @@ if(!empty($userInfo))
     
                         <div class="box-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
+                            <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
                     </form>
                 </div>
@@ -143,5 +144,6 @@ if(!empty($userInfo))
             </div>
         </div>    
     </section>
-    
 </div>
+
+<script src="<?php echo base_url(); ?>assets/js/editUser.js" type="text/javascript"></script>

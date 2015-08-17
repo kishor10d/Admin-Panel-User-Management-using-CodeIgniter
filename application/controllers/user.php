@@ -1,8 +1,5 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
- * This class is used to handle user operations
- */
 class User extends CI_Controller
 {
     
@@ -192,7 +189,7 @@ class User extends CI_Controller
         {
             $this->load->library('form_validation');
             
-            $this->form_validation->set_rules('name','Full Name','trim|required|max_length[128]|xss_clean');
+            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]|xss_clean');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
@@ -205,7 +202,7 @@ class User extends CI_Controller
             }
             else
             {
-                $name = ucwords(strtolower($this->input->post('name')));
+                $name = ucwords(strtolower($this->input->post('fname')));
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
@@ -275,7 +272,7 @@ class User extends CI_Controller
             
             $userId = $this->input->post('userId');
             
-            $this->form_validation->set_rules('name','Full Name','trim|required|max_length[128]|xss_clean');
+            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]|xss_clean');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
             $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
@@ -288,7 +285,7 @@ class User extends CI_Controller
             }
             else
             {
-                $name = ucwords(strtolower($this->input->post('name')));
+                $name = ucwords(strtolower($this->input->post('fname')));
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');

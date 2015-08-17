@@ -7,7 +7,7 @@
     <!-- Bootstrap 3.3.4 -->
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
     <!-- FontAwesome 4.3.0 -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons 2.0.0 -->
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
@@ -15,7 +15,12 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
-    
+    <style>
+    	.error{
+    		color:red;
+    		font-weight: normal;
+    	}
+    </style>
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
     <script type="text/javascript">
@@ -125,8 +130,8 @@
             ?>
             <li class="treeview">
               <a href="<?php echo base_url(); ?>userListing">
-                <i class="fa fa-user-plus"></i>
-                <span>User Management</span>
+                <i class="fa fa-users"></i>
+                <span>Users</span>
               </a>
             </li>
             <li class="treeview">
