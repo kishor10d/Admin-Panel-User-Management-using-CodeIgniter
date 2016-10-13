@@ -1,14 +1,9 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class User extends CI_Controller
+require APPPATH . '/libraries/BaseController.php';
+
+class User extends BaseController
 {
-    
-    protected $role = ''; 
-    protected $vendorId = '';
-    protected $name = '';
-    protected $roleText = '';
-    protected $global = array();
-    
     /**
      * This is default constructor of the class
      */
@@ -32,73 +27,6 @@ class User extends CI_Controller
     }
     
     /**
-     * This function used to check the user is logged in or not
-     */
-    function isLoggedIn()
-    {
-        $isLoggedIn = $this->session->userdata('isLoggedIn');
-        
-        if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
-        {
-            redirect('/login');
-        }
-        else
-        {
-            $this->role = $this->session->userdata('role');
-            $this->vendorId = $this->session->userdata('userId');
-            $this->name = $this->session->userdata('name');
-            $this->roleText = $this->session->userdata('roleText');
-            
-            $this->global['name'] = $this->name;
-            $this->global['role'] = $this->role;
-            $this->global['role_text'] = $this->roleText;
-        }
-    }
-    
-    /**
-     * This function is used to check the access
-     */
-    function isAdmin()
-    {
-        if($this->role != ROLE_ADMIN) { return true; }
-        else {return false; }
-    }
-    
-    /**
-     * This function is used to check the access
-     */
-    function isTicketter()
-    {
-        if($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) { return true; }
-        else {return false; }
-        
-    }
-    
-    /**
-     * This function is used to load the set of views
-     */
-    function loadThis()
-    {
-        $this->global['pageTitle'] = 'CodeInsect : Access Denied';
-        
-        $this->load->view('includes/header', $this->global);
-        $this->load->view('access');
-        $this->load->view('includes/footer');
-    }
-    
-    
-    /**
-     * This function is used to logged out user from system
-     */
-    function logout()
-    {
-        $this->session->sess_destroy();
-        
-        redirect('/login');
-    }
-    
-    
-    /**
      * This function is used to load the user list
      */
     function userListing()
@@ -117,36 +45,10 @@ class User extends CI_Controller
             $this->load->library('pagination');
             
             $count = $this->user_model->userListingCount($searchText);
+
+			$returns = $this->paginationCompress ( "userListing/", $count, 5 );
             
-            $config['base_url'] = base_url().'userListing/';
-            $config['total_rows'] = $count;
-            $config['uri_segment'] = 2;
-            $config['per_page'] = 5;
-            $config['num_links'] = 5;
-            $config['full_tag_open'] = '<nav><ul class="pagination">';
-            $config['full_tag_close'] = '</ul></nav>';
-            $config['first_tag_open'] = '<li class="arrow">';
-            $config['first_link'] =  'First';
-            $config['first_tag_close'] = '</li>';
-            $config['prev_link'] = 'Previous';
-            $config['prev_tag_open'] = '<li class="arrow">';
-            $config['prev_tag_close'] = '</li>';
-            $config['next_link'] = 'Next';
-            $config['next_tag_open'] = '<li class="arrow">';
-            $config['next_tag_close'] = '</li>';
-            $config['cur_tag_open'] = '<li class="active"><a href="#">';
-            $config['cur_tag_close'] = '</a></li>';
-            $config['num_tag_open'] = '<li>';
-            $config['num_tag_close'] = '</li>';        
-            $config['last_tag_open'] = '<li class="arrow">';
-            $config['last_link'] = 'Last';
-            $config['last_tag_close'] = '</li>';
-            
-            $this->pagination->initialize($config);
-            $page = $config['per_page'];
-            $segment = $this->uri->segment(2);
-            
-            $data['userRecords'] = $this->user_model->userListing($searchText, $page, $segment);
+            $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
             
             $this->global['pageTitle'] = 'CodeInsect : User Listing';
             $this->load->view('includes/header', $this->global);

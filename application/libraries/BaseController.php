@@ -1,11 +1,11 @@
 <?php defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' ); 
 
 /**
- * Class : Base_Controller
+ * Class : BaseController
  * Base Class to control over all the classes
  * @author : Kishor Mali
  */
-class Base_Controller extends CI_Controller {
+class BaseController extends CI_Controller {
 	protected $role = '';
 	protected $vendorId = '';
 	protected $name = '';
@@ -71,7 +71,7 @@ class Base_Controller extends CI_Controller {
 	 * This function is used to load the set of views
 	 */
 	function loadThis() {
-		$this->global ['pageTitle'] = 'CIAS : Access Denied';
+		$this->global ['pageTitle'] = 'CodeInsect : Access Denied';
 		
 		$this->load->view ( 'includes/header', $this->global );
 		$this->load->view ( 'access' );
