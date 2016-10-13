@@ -42,6 +42,7 @@ define('ROLE_ADMIN',                            '1');
 define('ROLE_MANAGER',                         	'2');
 define('ROLE_EMPLOYEE',                         '3');
 
+define('SEGMENT',								2);
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
