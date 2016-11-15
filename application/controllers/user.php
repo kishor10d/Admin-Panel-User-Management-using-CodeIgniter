@@ -21,9 +21,7 @@ class User extends BaseController
     {
         $this->global['pageTitle'] = 'CodeInsect : Dashboard';
         
-        $this->load->view('includes/header', $this->global);
-        $this->load->view('dashboard');
-        $this->load->view('includes/footer');
+        $this->loadViews("dashboard", $this->global, NULL , NULL);
     }
     
     /**
@@ -51,9 +49,8 @@ class User extends BaseController
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
             
             $this->global['pageTitle'] = 'CodeInsect : User Listing';
-            $this->load->view('includes/header', $this->global);
-            $this->load->view('users', $data);
-            $this->load->view('includes/footer');
+            
+            $this->loadViews("users", $this->global, $data, NULL);
         }
     }
 
@@ -72,9 +69,8 @@ class User extends BaseController
             $data['roles'] = $this->user_model->getUserRoles();
             
             $this->global['pageTitle'] = 'CodeInsect : Add New User';
-            $this->load->view('includes/header', $this->global);
-            $this->load->view('addNew', $data);
-            $this->load->view('includes/footer');
+
+            $this->loadViews("addNew", $this->global, $data, NULL);
         }
     }
     
@@ -152,9 +148,8 @@ class User extends BaseController
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
             
             $this->global['pageTitle'] = 'CodeInsect : Edit User';
-            $this->load->view('includes/header', $this->global);
-            $this->load->view('editOld', $data);
-            $this->load->view('includes/footer');
+            
+            $this->loadViews("editOld", $this->global, $data, NULL);
         }
     }
     
@@ -252,9 +247,7 @@ class User extends BaseController
     {
         $this->global['pageTitle'] = 'CodeInsect : Change Password';
         
-        $this->load->view('includes/header', $this->global);
-        $this->load->view('changePassword');
-        $this->load->view('includes/footer');
+        $this->loadViews("changePassword", $this->global, NULL, NULL);
     }
     
     
