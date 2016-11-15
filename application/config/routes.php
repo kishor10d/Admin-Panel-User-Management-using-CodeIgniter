@@ -39,7 +39,7 @@
 */
 
 $route['default_controller'] = "login";
-$route['404_override'] = '';
+$route['404_override'] = 'error';
 
 
 /*********** USER DEFINED ROUTES *******************/
@@ -58,6 +58,7 @@ $route['editUser'] = "user/editUser";
 $route['deleteUser'] = "user/deleteUser";
 $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
+$route['pageNotFound'] = "user/pageNotFound";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
