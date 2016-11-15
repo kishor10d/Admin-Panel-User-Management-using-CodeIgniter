@@ -4,6 +4,8 @@
  * Class : BaseController
  * Base Class to control over all the classes
  * @author : Kishor Mali
+ * @version : 1.1
+ * @since : 15 November 2016
  */
 class BaseController extends CI_Controller {
 	protected $role = '';
@@ -104,9 +106,10 @@ class BaseController extends CI_Controller {
 	
 	/**
 	 * This function used provide the pagination resources
-	 * @param unknown $link
-	 * @param number $count
-	 * @return string[]|unknown[]
+	 * @param {string} $link : This is page link
+	 * @param {number} $count : This is page count
+	 * @param {number} $perPage : This is records per page limit
+	 * @return {mixed} $result : This is array of records and pagination data
 	 */
 	function paginationCompress($link, $count, $perPage = 10) {
 		$this->load->library ( 'pagination' );
