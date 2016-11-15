@@ -11,7 +11,9 @@ function pre($data)
     echo "</pre>";
 }
 
-
+/**
+ * This function used to get the CI instance
+ */
 if(!function_exists('get_instance'))
 {
     function get_instance()
