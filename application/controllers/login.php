@@ -63,9 +63,7 @@ class Login extends CI_Controller
             $email = $this->input->post('email');
             $password = $this->input->post('password');
             
-            $ecryptPassword = md5($password);
-            
-            $result = $this->login_model->loginMe($email, $ecryptPassword);
+            $result = $this->login_model->loginMe($email, $password);
             
             if(count($result) > 0)
             {
