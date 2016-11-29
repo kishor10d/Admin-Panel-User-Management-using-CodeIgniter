@@ -113,7 +113,7 @@ class User extends BaseController
                 $roleId = $this->input->post('role');
                 $mobile = $this->input->post('mobile');
                 
-                $userInfo = array('email'=>$email, 'password'=>md5($password), 'roleId'=>$roleId, 'name'=> $name,
+                $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
                                     'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:sa'));
                 
                 $this->load->model('user_model');
@@ -204,8 +204,9 @@ class User extends BaseController
                 }
                 else
                 {
-                    $userInfo = array('email'=>$email, 'password'=>md5($password), 'roleId'=>$roleId, 'name'=>ucwords($name),
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'));
+                    $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
+                        'name'=>ucwords($name), 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 
+                        'updatedDtm'=>date('Y-m-d H:i:sa'));
                 }
                 
                 $result = $this->user_model->editUser($userInfo, $userId);
@@ -278,7 +279,7 @@ class User extends BaseController
             $oldPassword = $this->input->post('oldPassword');
             $newPassword = $this->input->post('newPassword');
             
-            $resultPas = $this->user_model->matchOldPassword($this->vendorId, md5($oldPassword));
+            $resultPas = $this->user_model->matchOldPassword($this->vendorId, $oldPassword);
             
             if(empty($resultPas))
             {
@@ -287,7 +288,8 @@ class User extends BaseController
             }
             else
             {
-                $usersData = array('password'=>md5($newPassword), 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'));
+                $usersData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
+                                'updatedDtm'=>date('Y-m-d H:i:sa'));
                 
                 $result = $this->user_model->changePassword($this->vendorId, $usersData);
                 
