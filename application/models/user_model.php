@@ -48,10 +48,7 @@ class User_model extends CI_Model
         $this->db->limit($page, $segment);
         $query = $this->db->get();
         
-        $result = $query->result();
-        pre($result);
-        pre($this->db->last_query());
-        die;
+        $result = $query->result();        
         return $result;
     }
     
