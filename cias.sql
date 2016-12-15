@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2016 at 04:48 PM
+-- Generation Time: Dec 15, 2016 at 04:51 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -92,7 +92,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`userId`, `email`, `password`, `name`, `mobile`, `roleId`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
-(1, 'kishor10d@gmail.com', '$2y$10$IFDU.XIGMTB8LvEG1mRAw.mvbpmTRI2bIBNfeGvWfuxEXyEspVpNW', 'Kishor Mali', '8698368846', 1, 0, 0, '2015-07-01 18:56:49', 1, '2016-12-09 17:52:50'),
+(1, 'admin@codeinsect.com', '$2y$10$IFDU.XIGMTB8LvEG1mRAw.mvbpmTRI2bIBNfeGvWfuxEXyEspVpNW', 'System Administrator', '9890098900', 1, 0, 0, '2015-07-01 18:56:49', 1, '2016-12-09 17:52:50'),
 (2, 'manager@codeinsect.com', '$2y$10$quODe6vkNma30rcxbAHbYuKYAZQqUaflBgc4YpV9/90ywd.5Koklm', 'Manager', '9890098900', 2, 0, 1, '2016-12-09 17:49:56', NULL, NULL),
 (3, 'employee@codeinsect.com', '$2y$10$M3ttjnzOV2lZSigBtP0NxuCtKRte70nc8TY5vIczYAQvfG/8syRze', 'Employee', '9890098900', 3, 0, 1, '2016-12-09 17:50:22', NULL, NULL);
 
