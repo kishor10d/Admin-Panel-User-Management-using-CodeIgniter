@@ -32,7 +32,7 @@ To login, I am going to provide the user-email ids and password below.
 
 email : admin@codeinsect.com
 
-password : admin
+password : codeinsect
 
 **Manager Account :**
 
