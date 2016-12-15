@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2016 at 01:05 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: Dec 15, 2016 at 04:48 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.5.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `cias`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_items`
+--
+
+CREATE TABLE `tbl_items` (
+  `itemId` int(11) NOT NULL,
+  `itemHeader` varchar(512) NOT NULL COMMENT 'Heading',
+  `itemSub` varchar(1021) NOT NULL COMMENT 'sub heading',
+  `itemDesc` text COMMENT 'content or description',
+  `itemImage` varchar(80) DEFAULT NULL,
+  `isDeleted` tinyint(4) NOT NULL DEFAULT '0',
+  `createdBy` int(11) NOT NULL,
+  `createdDtm` datetime NOT NULL,
+  `updatedDtm` datetime DEFAULT NULL,
+  `updatedBy` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_items`
+--
+
+INSERT INTO `tbl_items` (`itemId`, `itemHeader`, `itemSub`, `itemDesc`, `itemImage`, `isDeleted`, `createdBy`, `createdDtm`, `updatedDtm`, `updatedBy`) VALUES
+(1, 'jquery.validation.js', 'Contribution towards jquery.validation.js', 'jquery.validation.js is the client side javascript validation library authored by Jörn Zaefferer hosted on github for us and we are trying to contribute to it. Working on localization now', 'validation.png', 0, 1, '2015-09-02 00:00:00', NULL, NULL),
+(2, 'CodeIgniter User Management', 'Demo for user management system', 'This the demo of User Management System (Admin Panel) using CodeIgniter PHP MVC Framework and AdminLTE bootstrap theme. You can download the code from the repository or forked it to contribute. Usage and installation instructions are provided in ReadMe.MD', 'cias.png', 0, 1, '2015-09-02 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -49,7 +76,7 @@ INSERT INTO `tbl_roles` (`roleId`, `role`) VALUES
 CREATE TABLE `tbl_users` (
   `userId` int(11) NOT NULL,
   `email` varchar(128) NOT NULL COMMENT 'login email',
-  `password` varchar(256) NOT NULL COMMENT 'login password md5',
+  `password` varchar(128) NOT NULL COMMENT 'hashed login password',
   `name` varchar(128) DEFAULT NULL COMMENT 'full name of user',
   `mobile` varchar(20) DEFAULT NULL,
   `roleId` tinyint(4) NOT NULL,
@@ -65,13 +92,19 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`userId`, `email`, `password`, `name`, `mobile`, `roleId`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
-(1, 'admin@codeinsect.com', '$2y$10$CzIosKAJ0YmCtaoF2SwWe.NccoebwEuzgoPj4r5tfxDN.OehdAFBm', 'Kishor Mali', '1234567890', 1, 0, 0, '2015-07-01 18:56:49', 1, '2016-11-29 13:02:04'),
-(2, 'manager@codeinsect.com', '$2y$10$GSi/XZ7O4engnuC76ofM1O6B.CB/Fp0gKc.tkwA76xpSlZxEeYku6', 'Manager', '1234567890', 2, 0, 1, '2016-11-29 13:03:03', NULL, NULL),
-(3, 'employee@codeinsect.com', '$2y$10$GARVKzg2JQ1AEd7WH9PqS.vUoznbUBr8Dm9H19YMFs0rvYIc4CfHK', 'Employee', '1234567890', 3, 0, 1, '2016-11-29 13:04:30', NULL, NULL);
+(1, 'kishor10d@gmail.com', '$2y$10$IFDU.XIGMTB8LvEG1mRAw.mvbpmTRI2bIBNfeGvWfuxEXyEspVpNW', 'Kishor Mali', '8698368846', 1, 0, 0, '2015-07-01 18:56:49', 1, '2016-12-09 17:52:50'),
+(2, 'manager@codeinsect.com', '$2y$10$quODe6vkNma30rcxbAHbYuKYAZQqUaflBgc4YpV9/90ywd.5Koklm', 'Manager', '9890098900', 2, 0, 1, '2016-12-09 17:49:56', NULL, NULL),
+(3, 'employee@codeinsect.com', '$2y$10$M3ttjnzOV2lZSigBtP0NxuCtKRte70nc8TY5vIczYAQvfG/8syRze', 'Employee', '9890098900', 3, 0, 1, '2016-12-09 17:50:22', NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tbl_items`
+--
+ALTER TABLE `tbl_items`
+  ADD PRIMARY KEY (`itemId`);
 
 --
 -- Indexes for table `tbl_roles`
@@ -89,6 +122,11 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `tbl_items`
+--
+ALTER TABLE `tbl_items`
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_roles`
 --
