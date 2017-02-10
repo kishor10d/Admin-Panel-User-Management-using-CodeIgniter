@@ -80,6 +80,24 @@ class User extends BaseController
             $this->loadViews("addNew", $this->global, $data, NULL);
         }
     }
+
+    /**
+     * This function is used to check whether email already exist or not
+     */
+    function checkEmailExists()
+    {
+        $userId = $this->input->post("userId");
+        $email = $this->input->post("email");
+
+        if(empty($userId)){
+            $result = $this->user_model->checkEmailExists($email);
+        } else {
+            $result = $this->user_model->checkEmailExists($email, $userId);
+        }
+
+        if(empty($result)){ echo("true"); }
+        else { echo("false"); }
+    }
     
     /**
      * This function is used to add new user to the system

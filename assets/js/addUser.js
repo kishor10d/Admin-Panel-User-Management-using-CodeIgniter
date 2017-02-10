@@ -16,7 +16,7 @@ $(document).ready(function(){
 		
 		rules:{
 			fname :{ required : true },
-			email : { required : true, email : true },
+			email : { required : true, email : true, remote : { url : baseURL + "checkEmailExists", type :"post"} },
 			password : { required : true },
 			cpassword : {required : true, equalTo: "#password"},
 			mobile : { required : true, digits : true },
@@ -24,7 +24,7 @@ $(document).ready(function(){
 		},
 		messages:{
 			fname :{ required : "This field is required" },
-			email : { required : "This field is required", email : "Please enter valid email address" },
+			email : { required : "This field is required", email : "Please enter valid email address", remote : "Email already taken" },
 			password : { required : "This field is required" },
 			cpassword : {required : "This field is required", equalTo: "Please enter same password" },
 			mobile : { required : "This field is required", digits : "Please enter numbers only" },
