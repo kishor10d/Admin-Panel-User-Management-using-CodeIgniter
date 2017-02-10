@@ -59,6 +59,9 @@ $route['deleteUser'] = "user/deleteUser";
 $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
 $route['pageNotFound'] = "user/pageNotFound";
+$route['checkEmailExists'] = "user/checkEmailExists";
+
+$route['forgotPassword'] = "login/forgotPassword";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
