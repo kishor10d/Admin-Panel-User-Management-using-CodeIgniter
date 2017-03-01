@@ -117,18 +117,18 @@ class Login extends CI_Controller
         {
             $email = $this->input->post('login_email');
             
-            if($this->user_model->checkEmailExist($email))
+            if($this->login_model->checkEmailExist($email))
             {
                 $encoded_email = urlencode($email);
                 
                 $this->load->helper('string');
                 $data['email'] = $email;
                 $data['activation_id'] = random_string('alnum',15);
-                $data['created_dtm'] = date('Y-m-d H:i:s');
-                $data['agent'] = $this->getBrowserAgent();
+                $data['createdDtm'] = date('Y-m-d H:i:s');
+                $data['agent'] = getBrowserAgent();
                 $data['client_ip'] = $this->input->ip_address();
                 
-                $save = $this->user_model->resetPasswordUser($data);                
+                $save = $this->login_model->resetPasswordUser($data);                
                 
                 if($save)
                 {
@@ -139,23 +139,17 @@ class Login extends CI_Controller
                     $config['mailtype'] = 'html';
                     
                     $this->load->library('email', $config);
-                    
+
                     $data1['reset_link'] = base_url() . "resetPasswordConfirmUser/" . $data['activation_id'] . "/" . $encoded_email;
-                    $data1['info'] = $this->user_model->getCustomerInfoByEmail($email);
-                    
-                    $this->email->from(ADMIN_EMAIL_ID, WEBSITE);
-                    $this->email->to($email);
-                    $this->email->subject(RESET_PASSWORD_EMAIL_SUBJECT);
-                    $this->email->message($this->load->view('email', $data1, TRUE));
-                    
-                    if ($this->email->send())
-                    {
-                        $status = 'send';
+                    $userInfo = $this->login_model->getCustomerInfoByEmail($email);
+
+                    if(!empty($userInfo)){
+                        $data1["name"] = $userInfo[0]->name;
+                        $data1["email"] = $userInfo[0]->email;
+                        $data1["message"] = "Reset Your Password";
                     }
-                    else
-                    {
-                        $status = 'notsend';
-                    }
+
+                    $status = resetPasswordEmail($data1);
                 }
                 else
                 {
@@ -165,9 +159,9 @@ class Login extends CI_Controller
             else
             {
                 $status = 'invalid';
-            }
-            
-            echo json_encode(array('status'=>$status));
+            }   
+
+            redirect('/forgotPassword');
         }
     }
 
