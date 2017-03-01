@@ -40,9 +40,9 @@
             </div>
         <?php } ?>
         
-        <form action="<?php echo base_url(); ?>loginMe" method="post">
+        <form action="<?php echo base_url(); ?>resetPasswordUser" method="post">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email" name="email" required />
+            <input type="email" class="form-control" placeholder="Email" name="login_email" required />
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           
@@ -50,7 +50,7 @@
             <div class="col-xs-8">
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <input type="submit" class="btn btn-primary btn-block btn-flat" value="Sign In" />
+              <input type="submit" class="btn btn-primary btn-block btn-flat" value="Submit" />
             </div><!-- /.col -->
           </div>
         </form>

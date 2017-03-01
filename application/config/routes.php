@@ -62,6 +62,7 @@ $route['pageNotFound'] = "user/pageNotFound";
 $route['checkEmailExists'] = "user/checkEmailExists";
 
 $route['forgotPassword'] = "login/forgotPassword";
+$route['resetPasswordUser'] = "login/resetPasswordUser";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

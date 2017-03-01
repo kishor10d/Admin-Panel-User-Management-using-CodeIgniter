@@ -44,5 +44,18 @@ define('ROLE_EMPLOYEE',                         '3');
 
 define('SEGMENT',								2);
 
+/************************** EMAIL CONSTANTS *****************************/
+
+define('EMAIL_FROM',                            'kishor10d@codeinsect.com');
+define('EMAIL_BCC',                            	'codeinsect@codeinsect.com');
+define('FROM_NAME',                             'CIAS Admin System');
+define('EMAIL_PASS',                            'Name@9822');
+define('PROTOCOL',                             	'smtp');
+define('SMTP_HOST',                             'smtp.webfaction.com');
+define('SMTP_PORT',                             '587');
+define('SMTP_USER',                             'kishor10dcode');
+define('SMTP_PASS',                             'Name@9822');
+define('MAIL_PATH',                             '/usr/sbin/sendmail');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

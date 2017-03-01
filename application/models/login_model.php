@@ -29,6 +29,58 @@ class Login_model extends CI_Model
             return array();
         }
     }
+
+    /**
+     * This function used to check email exists or not
+     * @param {string} $email : This is users email id
+     * @return {boolean} $result : TRUE/FALSE
+     */
+    function checkEmailExist($email)
+    {
+        $this->db->select('userId');
+        $this->db->where('email', $email);
+        $this->db->where('isDeleted', 0);
+        $query = $this->db->get('tbl_users');
+
+        if ($query->num_rows() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * This function used to insert reset password data
+     * @param {array} $data : This is reset password data
+     * @return {boolean} $result : TRUE/FALSE
+     */
+    function resetPasswordUser($data)
+    {
+        $result = $this->db->insert('tbl_reset_password', $data);
+
+        if($result) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * This function is used to get customer information by email-id for forget password email
+     * @param string $email : Email id of customer
+     * @return object $result : Information of customer
+     */
+    function getCustomerInfoByEmail($email)
+    {
+        $this->db->select('userId, email, name');
+        $this->db->from('tbl_users');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('email', $email);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
 }
 
 ?>
