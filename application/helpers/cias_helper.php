@@ -136,8 +136,16 @@ if(!function_exists('resetPasswordEmail'))
         $CI->email->to($detail["email"]);
         $status = $CI->email->send();
         
-        var_dump($status);
-        die;
+        return $status;
+    }
+}
+
+if(!function_exists('setFlashData'))
+{
+    function setFlashData($status, $flashMsg)
+    {
+        $CI = get_instance();
+        $CI->session->set_flashdata($status, $flashMsg);
     }
 }
 
