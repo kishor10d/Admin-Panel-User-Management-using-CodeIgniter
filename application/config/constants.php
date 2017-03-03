@@ -46,15 +46,15 @@ define('SEGMENT',								2);
 
 /************************** EMAIL CONSTANTS *****************************/
 
-define('EMAIL_FROM',                            'kishor10d@codeinsect.com');
-define('EMAIL_BCC',                            	'codeinsect@codeinsect.com');
-define('FROM_NAME',                             'CIAS Admin System');
-define('EMAIL_PASS',                            'Name@9822');
-define('PROTOCOL',                             	'smtp');
-define('SMTP_HOST',                             'smtp.webfaction.com');
-define('SMTP_PORT',                             '587');
-define('SMTP_USER',                             'kishor10dcode');
-define('SMTP_PASS',                             'Name@9822');
+define('EMAIL_FROM',                            'Your from email');		// e.g. email@example.com
+define('EMAIL_BCC',                            	'Your bcc email');		// e.g. email@example.com
+define('FROM_NAME',                             'CIAS Admin System');	// Your system name
+define('EMAIL_PASS',                            'Your email password');	// Your email password
+define('PROTOCOL',                             	'smtp');				// mail, sendmail, smtp
+define('SMTP_HOST',                             'Your smtp host');		// your smtp host e.g. smtp.gmail.com
+define('SMTP_PORT',                             '25');					// your smtp port e.g. 25, 587
+define('SMTP_USER',                             'Your smtp user');		// your smtp user
+define('SMTP_PASS',                             'Your smtp password');	// your smtp password
 define('MAIL_PATH',                             '/usr/sbin/sendmail');
 
 /* End of file constants.php */
