@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2016 at 04:51 PM
+-- Generation Time: Mar 03, 2017 at 12:04 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -50,6 +50,25 @@ INSERT INTO `tbl_items` (`itemId`, `itemHeader`, `itemSub`, `itemDesc`, `itemIma
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_reset_password`
+--
+
+CREATE TABLE `tbl_reset_password` (
+  `id` bigint(20) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `activation_id` varchar(32) NOT NULL,
+  `agent` varchar(512) NOT NULL,
+  `client_ip` varchar(32) NOT NULL,
+  `isDeleted` tinyint(4) NOT NULL DEFAULT '0',
+  `createdBy` bigint(20) NOT NULL DEFAULT '1',
+  `createdDtm` datetime NOT NULL,
+  `updatedBy` bigint(20) DEFAULT NULL,
+  `updatedDtm` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_roles`
 --
 
@@ -92,8 +111,8 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`userId`, `email`, `password`, `name`, `mobile`, `roleId`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
-(1, 'admin@codeinsect.com', '$2y$10$IFDU.XIGMTB8LvEG1mRAw.mvbpmTRI2bIBNfeGvWfuxEXyEspVpNW', 'System Administrator', '9890098900', 1, 0, 0, '2015-07-01 18:56:49', 1, '2016-12-09 17:52:50'),
-(2, 'manager@codeinsect.com', '$2y$10$quODe6vkNma30rcxbAHbYuKYAZQqUaflBgc4YpV9/90ywd.5Koklm', 'Manager', '9890098900', 2, 0, 1, '2016-12-09 17:49:56', NULL, NULL),
+(1, 'admin@codeinsect.com', '$2y$10$xPX7FlJoaacCtiWdxTU61OrRK2u6LBHUoQDQsTwmFD95KVNng1g/e', 'System Administrator', '9890098900', 1, 0, 0, '2015-07-01 18:56:49', 1, '2016-12-09 17:52:50'),
+(2, 'manager@codeinsect.com', '$2y$10$quODe6vkNma30rcxbAHbYuKYAZQqUaflBgc4YpV9/90ywd.5Koklm', 'Manager', '9890098900', 2, 0, 1, '2016-12-09 17:49:56', 1, '2017-02-10 17:23:53'),
 (3, 'employee@codeinsect.com', '$2y$10$M3ttjnzOV2lZSigBtP0NxuCtKRte70nc8TY5vIczYAQvfG/8syRze', 'Employee', '9890098900', 3, 0, 1, '2016-12-09 17:50:22', NULL, NULL);
 
 --
@@ -105,6 +124,12 @@ INSERT INTO `tbl_users` (`userId`, `email`, `password`, `name`, `mobile`, `roleI
 --
 ALTER TABLE `tbl_items`
   ADD PRIMARY KEY (`itemId`);
+
+--
+-- Indexes for table `tbl_reset_password`
+--
+ALTER TABLE `tbl_reset_password`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_roles`
@@ -127,6 +152,11 @@ ALTER TABLE `tbl_users`
 --
 ALTER TABLE `tbl_items`
   MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tbl_reset_password`
+--
+ALTER TABLE `tbl_reset_password`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tbl_roles`
 --
