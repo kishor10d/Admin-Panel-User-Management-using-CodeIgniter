@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Management
+        <i class="fa fa-users"></i> User Management
         <small>Add / Edit User</small>
       </h1>
     </section>
