@@ -93,7 +93,7 @@ class Login extends CI_Controller
     /**
      * This function used to load forgot password view
      */
-    function forgotPassword()
+    public function forgotPassword()
     {
         $this->load->view('forgotPassword');
     }
@@ -111,7 +111,7 @@ class Login extends CI_Controller
                 
         if($this->form_validation->run() == FALSE)
         {
-            $this->forgetPasswordUser();
+            $this->forgotPassword();
         }
         else 
         {

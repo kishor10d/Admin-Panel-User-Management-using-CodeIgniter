@@ -94,6 +94,7 @@
             </div><!-- /.col -->
           </div>
         </form>
+        <a href="<?php echo base_url() ?>">Login</a><br>
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
