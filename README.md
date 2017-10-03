@@ -64,6 +64,6 @@ How to get over this issue?
 1) enable mod_rewrite.dll (or mod_rewrite.so) by removing leading # in httpd.conf.
 2) After that, follow this solution https://stackoverflow.com/questions/24472349/htaccess-doesnt-work-on-xampp-windows-7
 
-**ISSUE # 1 : Call to undefined function password_verify() :**
+**ISSUE # 2 : Call to undefined function password_verify() :**
 
 Solution is here : [Call to undefined function password_verify()](https://github.com/kishor10d/Admin-Panel-User-Management-using-CodeIgniter/issues/1)
