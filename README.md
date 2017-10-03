@@ -55,7 +55,7 @@ Once you logged in with System Administrator account, you can create user or edi
 [How to setup CodeIgniter Admin Panel](https://youtu.be/tU1PbcRj7ww) : This video contain the procedure of setting up CodeIgniter Admin Panel.
 
 
-**After login "loginMe" controller is not found : ISSUE**
+**ISSUE # 1 : After login "loginMe" controller is not found :**
 
 Lot of people raising this issue, I resolved it 4-5 times for every user. People are not searching for closed issues. Thats why I am going to put this here.
 
@@ -64,3 +64,6 @@ How to get over this issue?
 1) enable mod_rewrite.dll (or mod_rewrite.so) by removing leading # in httpd.conf.
 2) After that, follow this solution https://stackoverflow.com/questions/24472349/htaccess-doesnt-work-on-xampp-windows-7
 
+**ISSUE # 1 : Call to undefined function password_verify() :**
+
+Solution is here : [Call to undefined function password_verify()](https://github.com/kishor10d/Admin-Panel-User-Management-using-CodeIgniter/issues/1)
