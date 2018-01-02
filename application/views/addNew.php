@@ -21,21 +21,21 @@
                         <h3 class="box-title">Enter User Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    
+                    <?php $this->load->helper("form"); ?>
                     <form role="form" id="addUser" action="<?php echo base_url() ?>addNewUser" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
                                         <label for="fname">Full Name</label>
-                                        <input type="text" class="form-control required" id="fname" name="fname" maxlength="128">
+                                        <input type="text" class="form-control required" value="<?php echo set_value('fname'); ?>" id="fname" name="fname" maxlength="128">
                                     </div>
                                     
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email address</label>
-                                        <input type="text" class="form-control required email" id="email"  name="email" maxlength="128">
+                                        <input type="text" class="form-control required email" id="email" value="<?php echo set_value('email'); ?>" name="email" maxlength="128">
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control required" id="password"  name="password" maxlength="10">
+                                        <input type="password" class="form-control required" id="password" name="password" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -57,7 +57,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control required digits" id="mobile" name="mobile" maxlength="10">
+                                        <input type="text" class="form-control required digits" id="mobile" value="<?php echo set_value('mobile'); ?>" name="mobile" maxlength="10">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
