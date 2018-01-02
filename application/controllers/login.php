@@ -75,8 +75,14 @@ class Login extends CI_Controller
                                             'name'=>$res->name,
                                             'isLoggedIn' => TRUE
                                     );
-                                    
+
                     $this->session->set_userdata($sessionArray);
+
+                    unset($sessionArray['isLoggedIn']);
+
+                    $loginInfo = array("userId"=>$res->userId, "sessionData" => json_encode($sessionArray), "machineIp"=>$this->input->ip_address(), "userAgent"=>getBrowserAgent(), "agentString"=>$this->agent->agent_string(), "platform"=>$this->agent->platform());
+
+                    $this->login_model->lastLogin($loginInfo);
                     
                     redirect('/dashboard');
                 }

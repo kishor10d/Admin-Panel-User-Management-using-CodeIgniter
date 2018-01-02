@@ -105,6 +105,17 @@ class Login_model extends CI_Model
         $this->db->update('tbl_users', array('password'=>getHashedPassword($password)));
         $this->db->delete('tbl_reset_password', array('email'=>$email));
     }
+
+    /**
+     * This function used to save login information of user
+     * @param array $loginInfo : This is users login information
+     */
+    function lastLogin($loginInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tbl_last_login', $loginInfo);
+        $this->db->trans_complete();
+    }
 }
 
 ?>
