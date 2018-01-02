@@ -319,6 +319,9 @@ class User extends BaseController
         }
     }
 
+    /**
+     * Page not found : error 404
+     */
     function pageNotFound()
     {
         $this->global['pageTitle'] = 'CodeInsect : 404 - Page Not Found';
