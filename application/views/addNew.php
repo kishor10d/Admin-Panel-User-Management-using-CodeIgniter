@@ -71,7 +71,7 @@
                                                 foreach ($roles as $rl)
                                                 {
                                                     ?>
-                                                    <option value="<?php echo $rl->roleId ?>"><?php echo $rl->role ?></option>
+                                                    <option value="<?php echo $rl->roleId ?>" <?php if($rl->roleId == set_value('role')) {echo "selected=selected";} ?>><?php echo $rl->role ?></option>
                                                     <?php
                                                 }
                                             }
