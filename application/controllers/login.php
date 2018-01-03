@@ -104,7 +104,16 @@ class Login extends CI_Controller
      */
     public function forgotPassword()
     {
-        $this->load->view('forgotPassword');
+        $isLoggedIn = $this->session->userdata('isLoggedIn');
+        
+        if(!isset($isLoggedIn) || $isLoggedIn != TRUE)
+        {
+            $this->load->view('forgotPassword');
+        }
+        else
+        {
+            redirect('/dashboard');
+        }
     }
     
     /**

@@ -117,6 +117,11 @@ class Login_model extends CI_Model
         $this->db->trans_complete();
     }
 
+    /**
+     * This function is used to get last login info by user id
+     * @param number $userId : This is user id
+     * @return number $result : This is query result
+     */
     function lastLoginInfo($userId)
     {
         $this->db->select('BaseTbl.createdDtm');
