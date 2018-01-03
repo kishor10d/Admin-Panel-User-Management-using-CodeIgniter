@@ -83,7 +83,7 @@ class Login extends CI_Controller
 
                     unset($sessionArray['isLoggedIn'], $sessionArray['lastLogin']);
 
-                    $loginInfo = array("userId"=>$res->userId, "sessionData" => json_encode($sessionArray), "machineIp"=>$this->input->ip_address(), "userAgent"=>getBrowserAgent(), "agentString"=>$this->agent->agent_string(), "platform"=>$this->agent->platform());
+                    $loginInfo = array("userId"=>$res->userId, "sessionData" => json_encode($sessionArray), "machineIp"=>$_SERVER['REMOTE_ADDR'], "userAgent"=>getBrowserAgent(), "agentString"=>$this->agent->agent_string(), "platform"=>$this->agent->platform());
 
                     $this->login_model->lastLogin($loginInfo);
                     
