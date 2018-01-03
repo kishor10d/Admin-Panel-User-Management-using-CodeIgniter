@@ -335,30 +335,30 @@ class User extends BaseController
     {
         if($this->isAdmin() == TRUE)
         {
-            $userId = $this->session->userdata("userId");
+            $this->loadThis();
         }
         else
         {
             $userId = ($userId == NULL ? $this->session->userdata("userId") : $userId);
-        }
 
-        $searchText = $this->input->post('searchText');
+            $searchText = $this->input->post('searchText');
 
-        $data["userInfo"] = $this->user_model->getUserInfoById($userId);
+            $data["userInfo"] = $this->user_model->getUserInfoById($userId);
 
-        $data['searchText'] = $searchText;
-        
-        $this->load->library('pagination');
-        
-        $count = $this->user_model->loginHistoryCount($userId);
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->user_model->loginHistoryCount($userId);
 
-        $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 5, 3);
+            $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 5, 3);
 
-        $data['userRecords'] = $this->user_model->loginHistory($userId, $returns["page"], $returns["segment"]);
-        
-        $this->global['pageTitle'] = 'CodeInsect : User Login History';
-        
-        $this->loadViews("loginHistory", $this->global, $data, NULL);
+            $data['userRecords'] = $this->user_model->loginHistory($userId, $returns["page"], $returns["segment"]);
+            
+            $this->global['pageTitle'] = 'CodeInsect : User Login History';
+            
+            $this->loadViews("loginHistory", $this->global, $data, NULL);
+        }        
     }
 }
 
