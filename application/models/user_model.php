@@ -187,6 +187,58 @@ class User_model extends CI_Model
         
         return $this->db->affected_rows();
     }
+
+
+    /**
+     * This function is used to get user login history
+     * @param number $userId : This is user id
+     */
+    function loginHistoryCount($userId)
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.sessionData, BaseTbl.machineIp, BaseTbl.userAgent, BaseTbl.agentString, BaseTbl.platform, BaseTbl.createdDtm');
+        $this->db->where('BaseTbl.userId', $userId);
+        $this->db->from('tbl_last_login as BaseTbl');
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+
+    /**
+     * This function is used to get user login history
+     * @param number $userId : This is user id
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function loginHistory($userId, $page, $segment)
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.sessionData, BaseTbl.machineIp, BaseTbl.userAgent, BaseTbl.agentString, BaseTbl.platform, BaseTbl.createdDtm');
+        $this->db->from('tbl_last_login as BaseTbl');
+        $this->db->where('BaseTbl.userId', $userId);
+        $this->db->order_by('BaseTbl.id', 'DESC');
+        $this->db->limit($page, $segment);
+        $query = $this->db->get();
+        
+        $result = $query->result();        
+        return $result;
+    }
+
+    /**
+     * This function used to get user information by id
+     * @param number $userId : This is user id
+     * @return array $result : This is user information
+     */
+    function getUserInfoById($userId)
+    {
+        $this->db->select('userId, name, email, mobile, roleId');
+        $this->db->from('tbl_users');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('userId', $userId);
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
 }
 
   

@@ -60,6 +60,9 @@ $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
 $route['pageNotFound'] = "user/pageNotFound";
 $route['checkEmailExists'] = "user/checkEmailExists";
+$route['login-history'] = "user/loginHistoy";
+$route['login-history/(:num)'] = "user/loginHistoy/$1";
+$route['login-history/(:num)/(:num)'] = "user/loginHistoy/$1/$2";
 
 $route['forgotPassword'] = "login/forgotPassword";
 $route['resetPasswordUser'] = "login/resetPasswordUser";

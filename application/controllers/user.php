@@ -41,9 +41,7 @@ class User extends BaseController
             $this->loadThis();
         }
         else
-        {
-            $this->load->model('user_model');
-        
+        {        
             $searchText = $this->input->post('searchText');
             $data['searchText'] = $searchText;
             
@@ -327,6 +325,40 @@ class User extends BaseController
         $this->global['pageTitle'] = 'CodeInsect : 404 - Page Not Found';
         
         $this->loadViews("404", $this->global, NULL, NULL);
+    }
+
+    /**
+     * This function used to show login history
+     * @param number $userId : This is user id
+     */
+    function loginHistoy($userId = NULL)
+    {
+        if($this->isAdmin() == TRUE)
+        {
+            $userId = $this->session->userdata("userId");
+        }
+        else
+        {
+            $userId = ($userId == NULL ? $this->session->userdata("userId") : $userId);
+        }
+
+        $searchText = $this->input->post('searchText');
+
+        $data["userInfo"] = $this->user_model->getUserInfoById($userId);
+
+        $data['searchText'] = $searchText;
+        
+        $this->load->library('pagination');
+        
+        $count = $this->user_model->loginHistoryCount($userId);
+
+        $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 5, 3);
+
+        $data['userRecords'] = $this->user_model->loginHistory($userId, $returns["page"], $returns["segment"]);
+        
+        $this->global['pageTitle'] = 'CodeInsect : User Login History';
+        
+        $this->loadViews("loginHistory", $this->global, $data, NULL);
     }
 }
 
