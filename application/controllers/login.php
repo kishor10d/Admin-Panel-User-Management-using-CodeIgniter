@@ -69,16 +69,19 @@ class Login extends CI_Controller
             {
                 foreach ($result as $res)
                 {
+                    $lastLogin = $this->login_model->lastLoginInfo($res->userId);
+
                     $sessionArray = array('userId'=>$res->userId,                    
                                             'role'=>$res->roleId,
                                             'roleText'=>$res->role,
                                             'name'=>$res->name,
+                                            'lastLogin'=> $lastLogin->createdDtm,
                                             'isLoggedIn' => TRUE
                                     );
 
                     $this->session->set_userdata($sessionArray);
 
-                    unset($sessionArray['isLoggedIn']);
+                    unset($sessionArray['isLoggedIn'], $sessionArray['lastLogin']);
 
                     $loginInfo = array("userId"=>$res->userId, "sessionData" => json_encode($sessionArray), "machineIp"=>$this->input->ip_address(), "userAgent"=>getBrowserAgent(), "agentString"=>$this->agent->agent_string(), "platform"=>$this->agent->platform());
 

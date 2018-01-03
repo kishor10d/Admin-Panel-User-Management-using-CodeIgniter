@@ -53,8 +53,13 @@
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              <li>
-                <a href="<?= base_url() ?>login-history"><i class="fa fa-history"></i></a>
+              <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <i class="fa fa-history"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header"> Last Login : <i class="fa fa-clock-o"></i> <?= $last_login ?></li>
+                </ul>
               </li>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">

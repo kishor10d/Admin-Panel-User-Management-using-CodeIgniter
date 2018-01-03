@@ -116,6 +116,17 @@ class Login_model extends CI_Model
         $this->db->insert('tbl_last_login', $loginInfo);
         $this->db->trans_complete();
     }
+
+    function lastLoginInfo($userId)
+    {
+        $this->db->select('BaseTbl.createdDtm');
+        $this->db->where('BaseTbl.userId', $userId);
+        $this->db->order_by('BaseTbl.id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get('tbl_last_login as BaseTbl');
+
+        return $query->row();
+    }
 }
 
 ?>

@@ -13,6 +13,7 @@ class BaseController extends CI_Controller {
 	protected $name = '';
 	protected $roleText = '';
 	protected $global = array ();
+	protected $lastLogin = '';
 	
 	/**
 	 * Takes mixed data and optionally a status code, then creates the response
@@ -40,10 +41,12 @@ class BaseController extends CI_Controller {
 			$this->vendorId = $this->session->userdata ( 'userId' );
 			$this->name = $this->session->userdata ( 'name' );
 			$this->roleText = $this->session->userdata ( 'roleText' );
+			$this->lastLogin = $this->session->userdata ( 'lastLogin' );
 			
 			$this->global ['name'] = $this->name;
 			$this->global ['role'] = $this->role;
 			$this->global ['role_text'] = $this->roleText;
+			$this->global ['last_login'] = $this->lastLogin;
 		}
 	}
 	
