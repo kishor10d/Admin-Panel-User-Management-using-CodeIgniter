@@ -51,8 +51,8 @@ class Login extends CI_Controller
     {
         $this->load->library('form_validation');
         
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[128]|xss_clean|trim');
-        $this->form_validation->set_rules('password', 'Password', 'required|max_length[32]|');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[128]|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|max_length[32]');
         
         if($this->form_validation->run() == FALSE)
         {
@@ -60,7 +60,7 @@ class Login extends CI_Controller
         }
         else
         {
-            $email = $this->input->post('email');
+            $email = $this->security->xss_clean($this->input->post('email'));
             $password = $this->input->post('password');
             
             $result = $this->login_model->loginMe($email, $password);
@@ -125,7 +125,7 @@ class Login extends CI_Controller
         
         $this->load->library('form_validation');
         
-        $this->form_validation->set_rules('login_email','Email','trim|required|valid_email|xss_clean');
+        $this->form_validation->set_rules('login_email','Email','trim|required|valid_email');
                 
         if($this->form_validation->run() == FALSE)
         {
@@ -133,7 +133,7 @@ class Login extends CI_Controller
         }
         else 
         {
-            $email = $this->input->post('login_email');
+            $email = $this->security->xss_clean($this->input->post('login_email'));
             
             if($this->login_model->checkEmailExist($email))
             {
