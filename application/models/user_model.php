@@ -22,7 +22,7 @@ class User_model extends CI_Model
         $this->db->where('BaseTbl.roleId !=', 1);
         $query = $this->db->get();
         
-        return count($query->result());
+        return $query->num_rows();
     }
     
     /**
