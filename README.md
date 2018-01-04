@@ -57,7 +57,11 @@ Once you logged in with System Administrator account, you can create user or edi
 
 [CodeIgniter Admin Panel Demo](https://youtu.be/RFRXUd8LHUM) : This video contain the demo of CodeIgniter Admin Panel.
 
+[![CodeIgniter Admin Panel Demo](http://img.youtube.com/vi/RFRXUd8LHUM/0.jpg)](http://www.youtube.com/watch?v=RFRXUd8LHUM)
+
 [How to setup CodeIgniter Admin Panel](https://youtu.be/tU1PbcRj7ww) : This video contain the procedure of setting up CodeIgniter Admin Panel.
+
+[![How to setup CodeIgniter Admin Panel](http://img.youtube.com/vi/tU1PbcRj7ww/0.jpg)](http://www.youtube.com/watch?v=tU1PbcRj7ww)
 
 
 **ISSUE # 1 : After login "loginMe" controller is not found :**
