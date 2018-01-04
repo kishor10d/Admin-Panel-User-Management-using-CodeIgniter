@@ -4,15 +4,9 @@
 The code is uploaded to demonstrate the simple role based Admin Panel application using CodeIgniter(MVC Framework)
 
 ## Version Information
-**1) Upto Release 1.2 -**
-    CodeIgniter 2.2
-    PHP version 5.1.6 or newer
-    MySQL (4.1+), MySQLi
+**1) Upto Release 1.2 -** CodeIgniter 2.2, PHP version 5.1.6 or newer, MySQL (4.1+), MySQLi
     
-**2) Latest (master) -**
-    CodeIgniter 3.1.6
-    PHP : 5.6
-    MySQL (5.1+), MySQLi
+**2) Latest (master) -** CodeIgniter 3.1.6, PHP version 5.6 or newer, MySQL (5.1+), MySQLi
 
 ## Installation
 
