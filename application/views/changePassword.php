@@ -21,7 +21,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="inputPassword1">Old Password</label>
-                                        <input type="password" class="form-control" id="inputOldPassword" placeholder="Old password" name="oldPassword" maxlength="10" required>
+                                        <input type="password" class="form-control" id="inputOldPassword" placeholder="Old password" name="oldPassword" maxlength="20" required>
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="inputPassword1">New Password</label>
-                                        <input type="password" class="form-control" id="inputPassword1" placeholder="New password" name="newPassword" maxlength="10" required>
+                                        <input type="password" class="form-control" id="inputPassword1" placeholder="New password" name="newPassword" maxlength="20" required>
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="inputPassword2">Confirm New Password</label>
-                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm new password" name="cNewPassword" maxlength="10" required>
+                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm new password" name="cNewPassword" maxlength="20" required>
                                     </div>
                                 </div>
                             </div>
