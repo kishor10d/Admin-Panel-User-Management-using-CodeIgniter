@@ -1,26 +1,38 @@
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css" />
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         <i class="fa fa-users"></i> Login History
-        <small>Add, Edit, Delete</small>
+        <small>track login history</small>
       </h1>
     </section>
     <section class="content">
+        <div class="row">
+          <form action="<?php echo base_url() ?>login-history" method="POST" id="searchList">
+            <div class="col-md-2 form-group">
+              <label>Search Parameters</label>
+            </div>
+            <div class="col-md-3 form-group">
+              <input for="fromDate" type="text" name="fromDate" value="" class="form-control input-sm datepicker" placeholder="From Date"/>
+            </div>
+            <div class="col-md-3 form-group">
+              <input id="toDate" type="text" name="toDate" value="" class="form-control input-sm datepicker" placeholder="To Date"/>
+            </div>
+            <div class="col-md-3 form-group">
+              <input id="searchText" type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm" placeholder="Search Text"/>
+            </div>
+            <div class="col-md-1 form-group">
+              <button type="submit" class="btn btn-sm btn-default btn-block searchList pull-right"><i class="fa fa-search"></i></button> 
+            </div>
+          </form>
+        </div>
         <div class="row">
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
                     <h3 class="box-title"><?= $userInfo->name." : ".$userInfo->email ?></h3>
                     <div class="box-tools">
-                        <form action="<?php echo base_url() ?>login-history" method="POST" id="searchList">
-                            <div class="input-group">
-                              <input type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                              <div class="input-group-btn">
-                                <button class="btn btn-sm btn-default searchList"><i class="fa fa-search"></i></button>
-                              </div>
-                            </div>
-                        </form>
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
@@ -62,6 +74,7 @@
         </div>
     </section>
 </div>
+<script src="<?php echo base_url(); ?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery('ul.pagination li a').click(function (e) {
@@ -69,6 +82,11 @@
             var link = jQuery(this).get(0).href;
             jQuery("#searchList").attr("action", link);
             jQuery("#searchList").submit();
+        });
+
+        jQuery('.datepicker').datepicker({
+          autoclose: true,
+          format : "dd-mm-yyyy"
         });
     });
 </script>
