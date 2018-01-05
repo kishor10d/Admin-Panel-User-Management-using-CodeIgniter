@@ -342,18 +342,22 @@ class User extends BaseController
             $userId = ($userId == NULL ? $this->session->userdata("userId") : $userId);
 
             $searchText = $this->input->post('searchText');
+            $fromDate = $this->input->post('fromDate');
+            $toDate = $this->input->post('toDate');
 
             $data["userInfo"] = $this->user_model->getUserInfoById($userId);
 
             $data['searchText'] = $searchText;
+            $data['fromDate'] = $fromDate;
+            $data['toDate'] = $toDate;
             
             $this->load->library('pagination');
             
-            $count = $this->user_model->loginHistoryCount($userId);
+            $count = $this->user_model->loginHistoryCount($userId, $searchText, $fromDate, $toDate);
 
             $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 5, 3);
 
-            $data['userRecords'] = $this->user_model->loginHistory($userId, $returns["page"], $returns["segment"]);
+            $data['userRecords'] = $this->user_model->loginHistory($userId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
             
             $this->global['pageTitle'] = 'CodeInsect : User Login History';
             

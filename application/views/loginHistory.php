@@ -10,20 +10,17 @@
     <section class="content">
         <div class="row">
           <form action="<?php echo base_url() ?>login-history" method="POST" id="searchList">
+            <div class="col-md-2 col-md-offset-4 form-group">
+              <input for="fromDate" type="text" name="fromDate" value="<?php echo $fromDate; ?>" class="form-control datepicker" placeholder="From Date"/>
+            </div>
             <div class="col-md-2 form-group">
-              <label>Search Parameters</label>
+              <input id="toDate" type="text" name="toDate" value="<?php echo $toDate; ?>" class="form-control datepicker" placeholder="To Date"/>
             </div>
             <div class="col-md-3 form-group">
-              <input for="fromDate" type="text" name="fromDate" value="" class="form-control input-sm datepicker" placeholder="From Date"/>
-            </div>
-            <div class="col-md-3 form-group">
-              <input id="toDate" type="text" name="toDate" value="" class="form-control input-sm datepicker" placeholder="To Date"/>
-            </div>
-            <div class="col-md-3 form-group">
-              <input id="searchText" type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm" placeholder="Search Text"/>
+              <input id="searchText" type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control" placeholder="Search Text"/>
             </div>
             <div class="col-md-1 form-group">
-              <button type="submit" class="btn btn-sm btn-default btn-block searchList pull-right"><i class="fa fa-search"></i></button> 
+              <button type="submit" class="btn btn-md btn-default btn-block searchList pull-right"><i class="fa fa-search"></i></button> 
             </div>
           </form>
         </div>
