@@ -35,19 +35,19 @@ To login, I am going to provide the user-email ids and password below.
 
 **System Administrator Account :**
 
-email : admin@codeinsect.com
+email : admin@example.com
 
 password : codeinsect
 
 **Manager Account :**
 
-email :  manager@codeinsect.com
+email :  manager@example.com
 
 password : codeinsect
 
 **Employee Account :**
 
-email : employee@codeinsect.com
+email : employee@example.com
 
 password : codeinsect
 
