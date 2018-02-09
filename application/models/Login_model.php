@@ -17,10 +17,10 @@ class Login_model extends CI_Model
         $this->db->where('BaseTbl.isDeleted', 0);
         $query = $this->db->get();
         
-        $user = $query->result();
+        $user = $query->row();
         
         if(!empty($user)){
-            if(verifyHashedPassword($password, $user[0]->password)){
+            if(verifyHashedPassword($password, $user->password)){
                 return $user;
             } else {
                 return array();

@@ -65,30 +65,27 @@ class Login extends CI_Controller
             
             $result = $this->login_model->loginMe($email, $password);
             
-            if(count($result) > 0)
+            if(!empty($result))
             {
-                foreach ($result as $res)
-                {
-                    $lastLogin = $this->login_model->lastLoginInfo($res->userId);
+                $lastLogin = $this->login_model->lastLoginInfo($result->userId);
 
-                    $sessionArray = array('userId'=>$res->userId,                    
-                                            'role'=>$res->roleId,
-                                            'roleText'=>$res->role,
-                                            'name'=>$res->name,
-                                            'lastLogin'=> $lastLogin->createdDtm,
-                                            'isLoggedIn' => TRUE
-                                    );
+                $sessionArray = array('userId'=>$result->userId,                    
+                                        'role'=>$result->roleId,
+                                        'roleText'=>$result->role,
+                                        'name'=>$result->name,
+                                        'lastLogin'=> $lastLogin->createdDtm,
+                                        'isLoggedIn' => TRUE
+                                );
 
-                    $this->session->set_userdata($sessionArray);
+                $this->session->set_userdata($sessionArray);
 
-                    unset($sessionArray['userId'], $sessionArray['isLoggedIn'], $sessionArray['lastLogin']);
+                unset($sessionArray['userId'], $sessionArray['isLoggedIn'], $sessionArray['lastLogin']);
 
-                    $loginInfo = array("userId"=>$res->userId, "sessionData" => json_encode($sessionArray), "machineIp"=>$_SERVER['REMOTE_ADDR'], "userAgent"=>getBrowserAgent(), "agentString"=>$this->agent->agent_string(), "platform"=>$this->agent->platform());
+                $loginInfo = array("userId"=>$result->userId, "sessionData" => json_encode($sessionArray), "machineIp"=>$_SERVER['REMOTE_ADDR'], "userAgent"=>getBrowserAgent(), "agentString"=>$this->agent->agent_string(), "platform"=>$this->agent->platform());
 
-                    $this->login_model->lastLogin($loginInfo);
-                    
-                    redirect('/dashboard');
-                }
+                $this->login_model->lastLogin($loginInfo);
+                
+                redirect('/dashboard');
             }
             else
             {
