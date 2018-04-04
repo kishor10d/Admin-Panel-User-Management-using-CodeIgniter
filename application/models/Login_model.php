@@ -94,7 +94,7 @@ class Login_model extends CI_Model
         $this->db->where('email', $email);
         $this->db->where('activation_id', $activation_id);
         $query = $this->db->get();
-        return $query->num_rows;
+        return $query->num_rows();
     }
 
     // This function used to create new password by reset link
