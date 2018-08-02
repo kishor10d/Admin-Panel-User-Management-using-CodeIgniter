@@ -355,7 +355,7 @@ class User extends BaseController
             
             $count = $this->user_model->loginHistoryCount($userId, $searchText, $fromDate, $toDate);
 
-            $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 5, 3);
+            $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 10, 3);
 
             $data['userRecords'] = $this->user_model->loginHistory($userId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
             
