@@ -339,7 +339,7 @@ class User extends BaseController
         }
         else
         {
-            $userId = ($userId == NULL ? $this->session->userdata("userId") : $userId);
+            $userId = ($userId == NULL ? 0 : $userId);
 
             $searchText = $this->input->post('searchText');
             $fromDate = $this->input->post('fromDate');

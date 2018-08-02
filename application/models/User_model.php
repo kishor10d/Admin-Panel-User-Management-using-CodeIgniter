@@ -9,7 +9,7 @@ class User_model extends CI_Model
      */
     function userListingCount($searchText = '')
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.createdDtm, Role.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
         if(!empty($searchText)) {
@@ -34,7 +34,7 @@ class User_model extends CI_Model
      */
     function userListing($searchText = '', $page, $segment)
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role');
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.createdDtm, Role.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
         if(!empty($searchText)) {
@@ -209,7 +209,9 @@ class User_model extends CI_Model
             $likeCriteria = "DATE_FORMAT(BaseTbl.createdDtm, '%Y-%m-%d' ) <= '".date('Y-m-d', strtotime($toDate))."'";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('BaseTbl.userId', $userId);
+        if($userId >= 1){
+            $this->db->where('BaseTbl.userId', $userId);
+        }
         $this->db->from('tbl_last_login as BaseTbl');
         $query = $this->db->get();
         
@@ -239,7 +241,9 @@ class User_model extends CI_Model
             $likeCriteria = "DATE_FORMAT(BaseTbl.createdDtm, '%Y-%m-%d' ) <= '".date('Y-m-d', strtotime($toDate))."'";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('BaseTbl.userId', $userId);
+        if($userId >= 1){
+            $this->db->where('BaseTbl.userId', $userId);
+        }
         $this->db->order_by('BaseTbl.id', 'DESC');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
