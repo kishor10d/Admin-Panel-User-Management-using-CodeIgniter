@@ -45,6 +45,7 @@ class User_model extends CI_Model
         }
         $this->db->where('BaseTbl.isDeleted', 0);
         $this->db->where('BaseTbl.roleId !=', 1);
+        $this->db->order_by('BaseTbl.userId', 'DESC');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
         
@@ -197,7 +198,7 @@ class User_model extends CI_Model
     {
         $this->db->select('BaseTbl.userId, BaseTbl.sessionData, BaseTbl.machineIp, BaseTbl.userAgent, BaseTbl.agentString, BaseTbl.platform, BaseTbl.createdDtm');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%')";
+            $likeCriteria = "(BaseTbl.sessionData LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
         if(!empty($fromDate)) {
@@ -227,7 +228,7 @@ class User_model extends CI_Model
         $this->db->select('BaseTbl.userId, BaseTbl.sessionData, BaseTbl.machineIp, BaseTbl.userAgent, BaseTbl.agentString, BaseTbl.platform, BaseTbl.createdDtm');
         $this->db->from('tbl_last_login as BaseTbl');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%')";
+            $likeCriteria = "(BaseTbl.sessionData  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
         if(!empty($fromDate)) {
