@@ -118,7 +118,7 @@ class User_model extends CI_Model
         $this->db->where('userId', $userId);
         $query = $this->db->get();
         
-        return $query->result();
+        return $query->row();
     }
     
     

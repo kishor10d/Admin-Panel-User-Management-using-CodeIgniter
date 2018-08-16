@@ -151,8 +151,8 @@ class Login extends CI_Controller
                     $userInfo = $this->login_model->getCustomerInfoByEmail($email);
 
                     if(!empty($userInfo)){
-                        $data1["name"] = $userInfo[0]->name;
-                        $data1["email"] = $userInfo[0]->email;
+                        $data1["name"] = $userInfo->name;
+                        $data1["email"] = $userInfo->email;
                         $data1["message"] = "Reset Your Password";
                     }
 

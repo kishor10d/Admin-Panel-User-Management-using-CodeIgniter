@@ -1,24 +1,9 @@
 <?php
-
-$userId = '';
-$name = '';
-$email = '';
-$mobile = '';
-$roleId = '';
-
-if(!empty($userInfo))
-{
-    foreach ($userInfo as $uf)
-    {
-        $userId = $uf->userId;
-        $name = $uf->name;
-        $email = $uf->email;
-        $mobile = $uf->mobile;
-        $roleId = $uf->roleId;
-    }
-}
-
-
+$userId = $userInfo->userId;
+$name = $userInfo->name;
+$email = $userInfo->email;
+$mobile = $userInfo->mobile;
+$roleId = $userInfo->roleId;
 ?>
 
 <div class="content-wrapper">
