@@ -60,7 +60,7 @@ class Login extends CI_Controller
         }
         else
         {
-            $email = $this->security->xss_clean($this->input->post('email'));
+            $email = strtolower($this->security->xss_clean($this->input->post('email')));
             $password = $this->input->post('password');
             
             $result = $this->login_model->loginMe($email, $password);
@@ -130,7 +130,7 @@ class Login extends CI_Controller
         }
         else 
         {
-            $email = $this->security->xss_clean($this->input->post('login_email'));
+            $email = strtolower($this->security->xss_clean($this->input->post('login_email')));
             
             if($this->login_model->checkEmailExist($email))
             {
@@ -214,7 +214,7 @@ class Login extends CI_Controller
     {
         $status = '';
         $message = '';
-        $email = $this->input->post("email");
+        $email = strtolower($this->input->post("email"));
         $activation_id = $this->input->post("activation_code");
         
         $this->load->library('form_validation');
