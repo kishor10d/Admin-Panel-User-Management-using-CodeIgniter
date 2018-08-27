@@ -364,6 +364,17 @@ class User extends BaseController
             $this->loadViews("loginHistory", $this->global, $data, NULL);
         }        
     }
+
+    /**
+     * This function is used to show users profile
+     */
+    function profile()
+    {
+        $data["userInfo"] = $this->user_model->getUserInfoById($this->vendorId);
+        
+        $this->global['pageTitle'] = 'CodeInsect : My profile';
+        $this->loadViews("profile", $this->global, $data, NULL);
+    }
 }
 
 ?>
