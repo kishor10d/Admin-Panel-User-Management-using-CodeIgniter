@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" />
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -10,19 +10,25 @@
     <section class="content">
         <div class="row">
           <form action="<?php echo base_url() ?>login-history" method="POST" id="searchList">
-            <div class="col-md-2 col-md-offset-3 form-group">
-              <input for="fromDate" type="text" name="fromDate" value="<?php echo $fromDate; ?>" class="form-control datepicker" placeholder="From Date"/>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 form-group">
+              <div class="input-group">
+                <input id="fromDate" type="text" name="fromDate" value="<?php echo $fromDate; ?>" class="form-control datepicker" placeholder="From Date"/>
+                <span class="input-group-addon"><label for="fromDate"><i class="fa fa-calendar"></i></label></span>
+              </div>
             </div>
-            <div class="col-md-2 form-group">
-              <input id="toDate" type="text" name="toDate" value="<?php echo $toDate; ?>" class="form-control datepicker" placeholder="To Date"/>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 form-group">
+              <div class="input-group">
+                <input id="toDate" type="text" name="toDate" value="<?php echo $toDate; ?>" class="form-control datepicker" placeholder="To Date"/>
+                <span class="input-group-addon"><label for="toDate"><i class="fa fa-calendar"></i></label></span>
+              </div>
             </div>
-            <div class="col-md-3 form-group">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
               <input id="searchText" type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control" placeholder="Search Text"/>
             </div>
-            <div class="col-md-1 form-group">
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 form-group">
               <button type="submit" class="btn btn-md btn-primary btn-block searchList pull-right"><i class="fa fa-search" aria-hidden="true"></i></button> 
             </div>
-            <div class="col-md-1 form-group">
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 form-group">
               <button class="btn btn-md btn-default btn-block pull-right resetFilters"><i class="fa fa-refresh" aria-hidden="true"></i></button>
             </div>
           </form>
@@ -74,7 +80,7 @@
         </div>
     </section>
 </div>
-<script src="<?php echo base_url(); ?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery('ul.pagination li a').click(function (e) {
