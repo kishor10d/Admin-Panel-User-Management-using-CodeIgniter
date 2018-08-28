@@ -91,7 +91,7 @@ class Login extends CI_Controller
             {
                 $this->session->set_flashdata('error', 'Email or password mismatch');
                 
-                redirect('/login');
+                $this->index();
             }
         }
     }
@@ -239,12 +239,12 @@ class Login extends CI_Controller
                 $this->login_model->createPasswordUser($email, $password);
                 
                 $status = 'success';
-                $message = 'Password changed successfully';
+                $message = 'Password reset successfully';
             }
             else
             {
                 $status = 'error';
-                $message = 'Password changed failed';
+                $message = 'Password reset failed';
             }
             
             setFlashData($status, $message);

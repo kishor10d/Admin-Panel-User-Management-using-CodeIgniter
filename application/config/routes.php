@@ -68,10 +68,13 @@ $route['editOld/(:num)'] = "user/editOld/$1";
 $route['editUser'] = "user/editUser";
 $route['deleteUser'] = "user/deleteUser";
 $route['profile'] = "user/profile";
+$route['profile/(:any)'] = "user/profile/$1";
 $route['profileUpdate'] = "user/profileUpdate";
+$route['profileUpdate/(:any)'] = "user/profileUpdate/$1";
 
 $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
+$route['changePassword/(:any)'] = "user/changePassword/$1";
 $route['pageNotFound'] = "user/pageNotFound";
 $route['checkEmailExists'] = "user/checkEmailExists";
 $route['login-history'] = "user/loginHistoy";

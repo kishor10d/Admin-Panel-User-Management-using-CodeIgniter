@@ -265,59 +265,6 @@ class User extends BaseController
     }
     
     /**
-     * This function is used to load the change password screen
-     */
-    function loadChangePass()
-    {
-        $this->global['pageTitle'] = 'CodeInsect : Change Password';
-        
-        $this->loadViews("changePassword", $this->global, NULL, NULL);
-    }
-    
-    
-    /**
-     * This function is used to change the password of the user
-     */
-    function changePassword()
-    {
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('oldPassword','Old password','required|max_length[20]');
-        $this->form_validation->set_rules('newPassword','New password','required|max_length[20]');
-        $this->form_validation->set_rules('cNewPassword','Confirm new password','required|matches[newPassword]|max_length[20]');
-        
-        if($this->form_validation->run() == FALSE)
-        {
-            $this->loadChangePass();
-        }
-        else
-        {
-            $oldPassword = $this->input->post('oldPassword');
-            $newPassword = $this->input->post('newPassword');
-            
-            $resultPas = $this->user_model->matchOldPassword($this->vendorId, $oldPassword);
-            
-            if(empty($resultPas))
-            {
-                $this->session->set_flashdata('nomatch', 'Your old password not correct');
-                redirect('loadChangePass');
-            }
-            else
-            {
-                $usersData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
-                                'updatedDtm'=>date('Y-m-d H:i:s'));
-                
-                $result = $this->user_model->changePassword($this->vendorId, $usersData);
-                
-                if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
-                else { $this->session->set_flashdata('error', 'Password updation failed'); }
-                
-                redirect('loadChangePass');
-            }
-        }
-    }
-
-    /**
      * Page not found : error 404
      */
     function pageNotFound()
@@ -368,15 +315,20 @@ class User extends BaseController
     /**
      * This function is used to show users profile
      */
-    function profile()
+    function profile($active = "details")
     {
         $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
+        $data["active"] = $active;
         
-        $this->global['pageTitle'] = 'CodeInsect : My profile';
+        $this->global['pageTitle'] = $active == "details" ? 'CodeInsect : My Profile' : 'CodeInsect : Change Password';
         $this->loadViews("profile", $this->global, $data, NULL);
     }
 
-    function profileUpdate()
+    /**
+     * This function is used to update the user details
+     * @param text $active : This is flag to set the active tab
+     */
+    function profileUpdate($active = "details")
     {
         $this->load->library('form_validation');
             
@@ -385,7 +337,7 @@ class User extends BaseController
         
         if($this->form_validation->run() == FALSE)
         {
-            $this->profile();
+            $this->profile($active);
         }
         else
         {
@@ -406,7 +358,50 @@ class User extends BaseController
                 $this->session->set_flashdata('error', 'Profile updation failed');
             }
 
-            redirect('profile');
+            redirect('profile/'.$active);
+        }
+    }
+
+    /**
+     * This function is used to change the password of the user
+     * @param text $active : This is flag to set the active tab
+     */
+    function changePassword($active = "changepass")
+    {
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('oldPassword','Old password','required|max_length[20]');
+        $this->form_validation->set_rules('newPassword','New password','required|max_length[20]');
+        $this->form_validation->set_rules('cNewPassword','Confirm new password','required|matches[newPassword]|max_length[20]');
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->profile($active);
+        }
+        else
+        {
+            $oldPassword = $this->input->post('oldPassword');
+            $newPassword = $this->input->post('newPassword');
+            
+            $resultPas = $this->user_model->matchOldPassword($this->vendorId, $oldPassword);
+            
+            if(empty($resultPas))
+            {
+                $this->session->set_flashdata('nomatch', 'Your old password is not correct');
+                redirect('profile/'.$active);
+            }
+            else
+            {
+                $usersData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
+                                'updatedDtm'=>date('Y-m-d H:i:s'));
+                
+                $result = $this->user_model->changePassword($this->vendorId, $usersData);
+                
+                if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
+                else { $this->session->set_flashdata('error', 'Password updation failed'); }
+                
+                redirect('profile/'.$active);
+            }
         }
     }
 }
