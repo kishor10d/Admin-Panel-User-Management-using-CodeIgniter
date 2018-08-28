@@ -268,6 +268,23 @@ class User_model extends CI_Model
         return $query->row();
     }
 
+    /**
+     * This function used to get user information by id with role
+     * @param number $userId : This is user id
+     * @return aray $result : This is user information
+     */
+    function getUserInfoWithRole($userId)
+    {
+        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.roleId, Roles.role');
+        $this->db->from('tbl_users as BaseTbl');
+        $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
+        $this->db->where('BaseTbl.userId', $userId);
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
 }
 
   

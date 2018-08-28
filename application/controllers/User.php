@@ -370,10 +370,44 @@ class User extends BaseController
      */
     function profile()
     {
-        $data["userInfo"] = $this->user_model->getUserInfoById($this->vendorId);
+        $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
         
         $this->global['pageTitle'] = 'CodeInsect : My profile';
         $this->loadViews("profile", $this->global, $data, NULL);
+    }
+
+    function profileUpdate()
+    {
+        $this->load->library('form_validation');
+            
+        $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
+        $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+        
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->profile();
+        }
+        else
+        {
+            $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
+            $mobile = $this->security->xss_clean($this->input->post('mobile'));
+            
+            $userInfo = array('name'=>$name, 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+            
+            $result = $this->user_model->editUser($userInfo, $this->vendorId);
+            
+            if($result == true)
+            {
+                $this->session->set_userdata('name', $name);
+                $this->session->set_flashdata('success', 'Profile updated successfully');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Profile updation failed');
+            }
+
+            redirect('profile');
+        }
     }
 }
 

@@ -4,6 +4,7 @@ $name = $userInfo->name;
 $email = $userInfo->email;
 $mobile = $userInfo->mobile;
 $roleId = $userInfo->roleId;
+$role = $userInfo->role;
 ?>
 
 <div class="content-wrapper">
@@ -19,44 +20,53 @@ $roleId = $userInfo->roleId;
     
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
+            <div class="col-md-3">
               <!-- general form elements -->
-                
+
+
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <img class="img-responsive img-circle" src="<?php echo base_url(); ?>assets/dist/img/avatar.png" alt="User profile picture">
+                        <h3 class="profile-username text-center"><?= $name ?></h3>
+
+                        <p class="text-muted text-center"><?= $role ?></p>
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Email</b> <a class="pull-right"><?= $email ?></a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Mobile</b> <a class="pull-right"><?= $mobile ?></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">User Details</h3>
+                        <h3 class="box-title">You can modify your details</h3>
                     </div><!-- /.box-header -->
-                    <!-- form start -->
-                    
-                    <form role="form" action="<?php echo base_url() ?>profile" method="post" id="editUser" role="form">
+                    <!-- form start -->                    
+                    <form role="form" action="<?php echo base_url() ?>profileUpdate" method="post" id="editProfile" role="form">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-6">                                
+                                <div class="col-md-12">                                
                                     <div class="form-group">
                                         <label for="fname">Full Name</label>
-                                        <input type="text" class="form-control" id="fname" placeholder="Full Name" name="fname" value="<?php echo $name; ?>" maxlength="128" />
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="email">Email address : </label>
-                                        <h5><?php echo $email; ?></h5>
+                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="<?php echo $name; ?>" maxlength="128" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number" name="mobile" value="<?php echo $mobile; ?>" maxlength="10">
+                                        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="<?php echo $mobile; ?>" maxlength="10">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="role">Role</label>
-                                    </div>
-                                </div>    
                             </div>
                         </div><!-- /.box-body -->
     

@@ -26,4 +26,19 @@ $(document).ready(function(){
 			role : { required : "This field is required", selected : "Please select atleast one option" }			
 		}
 	});
+
+	var editProfileForm = $("#editProfile");
+	
+	var validator = editProfileForm.validate({
+		
+		rules:{
+			fname :{ required : true },
+			mobile : { required : true, digits : true },
+		},
+		messages:{
+			fname :{ required : "This field is required" },
+			mobile : { required : "This field is required", digits : "Please enter numbers only" },
+		}
+	});
+
 });

@@ -70,11 +70,14 @@
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
+                    
                     <img src="<?php echo base_url(); ?>assets/dist/img/avatar.png" class="img-circle" alt="User Image" />
                     <p>
-                      <?php echo $name; ?>
+                      <?php echo $name; ?>&nbsp;
+                        <a style="text-decoration: none; color:#fff" href="<?php echo base_url(); ?>profile"><i class="fa fa-pencil"></i></a>
                       <small><?php echo $role_text; ?></small>
                     </p>
+                    
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
