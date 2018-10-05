@@ -1,13 +1,13 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Class : Error (ErrorController)
+ * Class : Errorr_404 (ErrorController)
  * Error class to redirect on errors
  * @author : Kishor Mali
  * @version : 1.1
  * @since : 15 November 2016
  */
-class Error extends CI_Controller
+class Errorr_404 extends CI_Controller
 {
     /**
      * This is default constructor of the class
