@@ -1,0 +1,680 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+ body{
+	font-family:Arial, Helvetica, sans-serif;
+	background: url('../images/3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+ }
+/**** LOGIN_SIGNUP ******/
+/* signup Form styles */
+#signup ol{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+#signup li{
+	position: relative;
+}
+#signup fieldset input,
+#signup fieldset textarea,
+#signup fieldset select{
+	background: #fff url(ico_validation.png) 379px 24px no-repeat;
+	display: inline-block;
+	width: 371px;
+	border: 1px solid #fff;
+	padding: 3px 26px 3px 3px;		
+	-moz-transition: background-color 1s ease;
+	-webkit-transition: background-color 1s ease;
+	-o-transition: background-color 1s ease;
+	transition: background-color 1s ease;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+#signup fieldset select{ 
+	width: 401px; 
+	padding: 3px;
+}
+#signup fieldset #postcode{ 
+	padding: 3px;
+	width: 400px;
+}
+#signup input::-webkit-input-placeholder,
+#signup input:-moz-placeholder {
+	color: #A6A6A6;
+}
+#signup .validation01
+{ 
+	background:red;
+	color: #fff;
+	display: none;
+	font-size: 12px;
+	padding: 3px;
+	position: absolute;
+	right: -160px;
+	text-align: center;
+	top: 0;
+	width: 150px;
+	outline: 0;
+	
+
+	
+}
+#signup input:focus + .validation01 { 
+	display: block; 
+}
+#signup input:focus:required:invalid + .validation01 .valid,
+#signup input.error:focus + .validation01 .valid,
+#signup input.required:focus + .validation01 .valid,
+#signup input:focus + .validation01 .valid	{
+	display: none; 
+}
+#signup input:focus:required:valid + .validation01,
+#signup input.valid:focus + .validation01{ 
+	background:green; 
+}
+#signup input:focus:required:valid + .validation01 .invalid,
+#signup input.valid:focus + .validation01 .invalid	{ 
+	display: none; 
+}
+#signup input:focus:required:valid + .validation01 .valid,
+#signup input.valid:focus + .validation01 .valid{
+	display: block; 
+}
+#signup fieldset input:required:valid{ 
+	background-color: #fff;
+	background-position: 379px -61px;
+}
+
+/* Enhanced error styling */
+#signup input.error{
+	background-color: pink; 
+	background-position: 379px 3px;
+	outline: none; 
+}
+#signup input.required{
+	background-color: #fff; 
+	background-position: 379px -29px;
+}
+#signup input.valid { 
+	background-color: #fff;
+	background-position: 379px -61px;
+}
+
+#signup input.error::-webkit-input-placeholder,
+#signup inputerror :-moz-placeholder {
+	color: #fff;
+}
+input#email {
+    width: 93%;
+    padding: 10px 10px 10px 10px;
+    font-weight: normal;
+    background: none;
+    border: 1px solid #8FA4B9;
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    margin: 6px 0 17px 0px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+	   
+}
+input#name {
+    width: 93%;
+    padding: 10px 10px 10px 10px;
+    font-weight: normal;
+    background: none;
+    border: 1px solid #8FA4B9;
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    margin: 6px 0 17px 0px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+   
+}
+input#tel {
+    width: 93%;
+    padding: 10px 10px 10px 10px;
+    font-weight: normal;
+    background: none;
+    border: 1px solid #8FA4B9;
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    margin: 6px 0 17px 0px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+	 
+}
+.login-form input#tel:hover,.login-form input#name:hover,.login-form input#email:hover{
+    border: 1px solid #0ab5ae;	
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+	-moz-transition:0.5s all;
+}
+.modal-content {
+    background:rgba(93, 125, 189, 0.3);
+}
+/*-- login --*/
+/*-- w3layouts --*/
+html, body {
+    height: 100%;
+}
+.login-section {
+    width: 50%;
+    margin: 4% auto 0;
+}
+.login{
+    width: 380px;
+    float: left;
+	margin-left:20px;
+}
+.signup {
+    width: 380px;
+    float: left;
+	
+}
+.modal-body {
+    padding: 24px 35px 35px;
+}
+.lo-im {
+    margin-top: 20px;
+}
+.login-form input[type="text"],.login-form input[type="password"]  {
+    width:93%;
+    padding: 10px 10px 10px 10px;
+    font-weight: normal;
+    background: none;
+    border: 1px solid #8FA4B9;
+    color: #ffffff !important;
+    outline: none;
+    font-size: 14px;
+    margin: 6px 0 17px 0px;
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+	-moz-transition:0.5s all;
+}
+.login-form input[type="text"]:hover,.login-form input[type="password"]:hover {
+    border: 1px solid #0ab5ae;	
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+	-moz-transition:0.5s all;
+}
+ /*-- agileits --*/
+.login-form input[type="submit"] { 
+	background:#0ab5ae;
+    color: #fff;
+    font-size: 17px;
+    border: none;
+    width: 100%;
+    outline: none;
+	cursor:pointer;
+    -webkit-appearance: none;
+    padding: 10px 15px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+}
+.login-form input[type="submit"]:hover {
+    background:#0fe3ef;
+}
+.social-icons li a:hover{
+	opacity:0.5;
+}
+.modal-dialog {
+    width: 380px;
+    margin: 92px auto 0;
+}
+.modal-header {
+    border-bottom: none;
+    text-align: center;
+    padding: 22px 12px 0;
+}
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 1;
+    color: #90B8DD;
+    text-shadow: 0 0px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 1;
+}
+.close:hover, .close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: 1;
+}
+.modal-header .close {
+    margin-top: -15px;
+}
+/*-- w3layouts --*/
+.modal-header h3,.modal-header h2 {
+    color: black;
+    font-size: 30px;
+	font-family: 'Calibri';
+}
+span.checkbox1 {
+    float: left;
+}
+a.forgot {
+	color:#fff;
+	text-decoration:none;
+	font-size: 0.875em;
+}
+label.checkbox {
+    margin: 0;
+}
+.checkbox input[type="checkbox"]{
+    margin-left: 0px;
+}
+.signin-rit .checkbox {
+    position: relative;
+    font-size: 0.91em;
+    font-weight: normal;
+    color: #c5c3c3;
+    padding: 0em 0.5em 0em 1.1em;
+    margin: 0;
+	z-index: -9;
+}
+.signin-rit .checkbox input {
+    position: absolute;
+    left: 0px;
+    margin-left: 0;
+    top: -2px;
+}
+.signin-rit {
+    margin: 1.34em 0;
+	text-align:center;
+}
+.sig-top {
+    margin-bottom: 20px;
+}
+p {
+    color: #c5c3c3;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0.8em 0 0;
+}
+/*-- agileits --*/
+.login-form p {
+	text-align:center;
+	margin-top:1em;
+	font-size:0.95em;
+	letter-spacing:1px;
+	color: #2F2F2F;
+}
+.login-form p a {
+	color:#fff;
+}
+h5.or {
+    text-align: center;
+    margin: 17px 0;
+    color: #fff;
+}
+h1 {
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 1.5em;
+	font-family: 'Oswald', sans-serif;
+}
+p.footer {
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    margin: 3em 0 2em;
+}
+p.footer a:hover {
+    color: #fff;
+}
+p.footer a {
+    text-decoration: none;
+    color:rgb(11, 247, 237);
+}
+.social-icons {
+    text-align: center;
+}
+.social-icons ul li {
+	display:inline-block;
+	margin:0 5px;
+}
+/*-- //login --*/
+a.pp {
+    color: #fff;
+    font-size: 15px;
+}
+p.get-pw {
+    color: #989898;
+    line-height: 24px;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+.modal-content.modal-info {
+    border-radius: 0;
+    border: none;
+}
+
+::-webkit-input-placeholder{
+	color:#fff;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #fff; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+:-ms-input-placeholder {  
+   color: #fff;  
+}
+@media all and (max-width:1440px){
+.login-section {
+    width: 55%;
+}
+}
+@media all and (max-width:1366px){
+.login-section {
+    width: 58%;
+    margin: 4% auto 0;
+}
+}
+@media all and (max-width:1280px){
+.login-section {
+    width: 62%;
+    margin: 4% auto 0;
+}
+}
+@media all and (max-width:1024px){
+.login-section {
+    width: 78%;
+    margin: 4% auto 0;
+}
+#signup .validation01 {
+    right: -135px;
+}
+}
+@media all and (max-width:991px){
+.signup {
+    width: 369px;
+}
+.login {
+    width: 369px;
+}
+.social-sits ul li a {
+	font-size: 13px;
+}
+}
+@media all and (max-width:800px){
+.signup {
+    width: 330px;
+}
+.login {
+    width: 330px;
+}
+.login-section {
+    width: 87%;
+}
+h1 {
+    font-size: 35px;
+    margin-bottom: 1em;
+}
+#signup .validation01{ 
+	right: -80px;
+	top: 30px;
+	z-index:9999;
+}   
+input#email {
+    width: 91.5%;
+}
+input#name {
+    width: 91.5%;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+	    width: 91.5%;
+}
+}
+@media all and (max-width:768px){
+	#small-dialog, #small-dialog2 {
+		  max-width: 85% !important;
+	}
+.login-section {
+    width: 91%;
+    margin: 4% auto 0;
+}
+#signup .validation01{ 
+	right: -65px;
+} 
+}
+@media only screen and (max-width:736px) {
+.login-section {
+    width: 95%;
+    margin: 4% auto 0;
+}
+#signup .validation01{ 
+	right: -50px;
+} 
+}
+@media only screen and (max-width:667px) {
+.login-section {
+    width: 51%;
+    margin: 4% auto 0;
+}
+.signup {
+    margin-bottom: 20px;
+}
+.login {
+    margin-left: 0px;
+}
+}
+@media only screen and (max-width:640px) {
+.modal-dialog {
+	width: 360px;
+	margin: 80px auto 0;
+}
+.login, .signup {
+	width: 360px;
+}
+#signup .validation01{ 
+	right: -20px;
+	top: 30px;
+}
+.login-section {
+    width: 58%;
+}
+input#email {
+    width: 92%;
+}
+input#name {
+    width: 92%;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+	    width: 92%;
+}
+}
+@media only screen and (max-width:600px) {
+.login-section {
+    width: 62%;
+    margin: 4% auto 0;
+}
+input#email {
+    width: 93%;
+}
+input#name {
+    width: 93%;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+	    width: 93%;
+}
+}
+@media only screen and (max-width:568px) {
+.login-section {
+    width: 66%;
+    margin: 4% auto 0;
+}
+}
+@media only screen and (max-width:480px) {
+.login-section {
+    width: 78%;
+    margin: 4% auto 0;
+}
+h1 {
+    font-size: 30px;
+}
+.login, .signup {
+    width: 330px;
+}
+input#email {
+    width: 91.5%;
+}
+input#name {
+    width: 91.5%;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+	    width: 91.5%;
+}
+}
+@media only screen and (max-width:430px) {
+.login-form p {
+	letter-spacing: 0px;
+}
+.modal-body {
+	padding: 30px 25px 35px;
+}
+input#email {
+    width: 92%;
+}
+input#name {
+    width: 92%;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+	    width: 92%;
+}
+#small-dialog, #small-dialog2 {
+	max-width: 90% !important;
+}
+p.footer {
+    font-size: 13px;
+    margin: 3em 0 1em;
+    line-height: 1.7em;
+}
+}
+@media all and (max-width:414px){
+.login-section {
+    width: 84%;
+    margin: 4% auto 0;
+}
+}
+@media all and (max-width:384px){
+.login, .signup {
+    width: 307px;
+}
+input#email {
+    width: 91%;
+}
+input#name {
+    width: 91%;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+	    width: 91%;
+}
+}
+@media all and (max-width:375px){
+.login, .signup {
+    width: 299px;
+}
+a.pp {
+    font-size: 14px;
+}
+}
+@media all and (max-width:320px){
+#small-dialog, #small-dialog2 {
+	max-width: 95% !important;
+}
+#small-dialog, #small-dialog2, #small-dialog3{
+	max-width: 95%;
+}
+.modal-dialog {
+	width: 290px;
+	margin: 60px auto 0;
+}
+.login, .signup {
+	width: 290px;
+}
+.modal-body {
+	padding: 30px 15px 35px;
+}
+.login-form p {
+	font-size: 0.9em;
+	letter-spacing: 0px;
+}
+.signin-rit .checkbox {
+	padding: 0em 0em 0em 1.1em;
+}
+.popupContainer {
+	width: 300px;
+	left: 50%!important;
+	top: 10px!important;
+}
+.login-section {
+    width: 90%;
+    margin: 8% auto 0;
+}
+h1 {
+    font-size: 24px;
+}
+.login, .signup {
+    width: 272px;
+}
+a.pp {
+    font-size: 13px;
+}
+p.footer {
+    margin: 2em 0 1em;
+}
+.login-form input[type="submit"] {
+    font-size: 15px;
+}
