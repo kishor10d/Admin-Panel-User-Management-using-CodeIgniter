@@ -252,6 +252,30 @@ class Login extends CI_Controller
             redirect("/login");
         }
     }
+   public function register(){    
+
+        $data_form = $this->input->post(NULL, TRUE);
+        if($data_form){
+            
+            $email = $data_form['email'];
+            $mobile = $data_form['mobile'];
+            $password = $data_form['password'];
+            $date = date('Y-m-d H:i:s');
+            $data = array(
+                'email' => $email,
+                'mobile' => $mobile,
+                'password' => md5($password),
+                'createdDtm' => $date
+            );
+            
+            $this->db->insert('tbl_users',$data);
+            redirect("/login");
+        }
+     $this->load->view('/registration');
+    }    
+    
 }
+    
+
 
 ?>
