@@ -4,15 +4,6 @@
 
 
 
-<style>
-
-            mark{
-                background-color: red;
-                color: black;
-            }
-
-</style>
-
      <title>Admin | Registration</title>
         <link href="assets/style.css" rel="stylesheet" type="text/css" media="all"/>
 
@@ -33,7 +24,7 @@
 
                     <div class="modal-body modal-spa">
                         <div class="login-form">          
-                                   <form action="<?php echo base_url(); ?>register" method="post">
+                                   <form action="<?php echo base_url(); ?>registration" method="post">
                                     <div class="td">
                                        	<ol>
 						                  <li>
@@ -46,6 +37,9 @@
                                     </div>
                                        
                                     <div class="td">
+                                       <input type="text" name="name" placeholder="Position" required="" />
+                                    </div>   
+                                    <div class="td">
                                         <input type="password" name="password" id="txtPassword" pattern="(?=.*[a-z]).{6,}" title="Must contain 6 and above characters" placeholder="Password" required="" />
                                     </div>
                                     <div class="tryregistrationFormAlert" id="trydivCheckPasswordMatch">
@@ -57,7 +51,7 @@
                                     <div class="registrationFormAlert" id="divCheckPasswordMatch">
                                     </div>
 
-                                    <input type="submit" id ="enter" disabled="true" name="enter" value="Submit New Password" oninput="checkPasswordMatch()">                   
+                                    <input type="submit" id ="enter" disabled="true" name="enter" value="Submit" oninput="checkPasswordMatch()">                   
                                 </form>
 
 								
