@@ -1,12 +1,6 @@
 # Admin Panel - User Management using CodeIgniter
 **Admin Panel - User Management Demo using CodeIgniter + AdminLTE Bootstrap Theme**
 
-:boom: :boom: :boom: :boom: :boom: :boom: :boom: :boom: 
-
-**Notice :** Currently I am updating latest AdminLTE theme. Please download latest release instead of cloning the master branch, if you want working project. Thanks a lot.
-
-:boom: :boom: :boom: :boom: :boom: :boom: :boom: :boom: 
-
 The code is uploaded to demonstrate the simple role based Admin Panel application using CodeIgniter(MVC Framework)
 
 **Purpose :**
