@@ -34,10 +34,12 @@ $(document).ready(function(){
 		rules:{
 			fname :{ required : true },
 			mobile : { required : true, digits : true },
+			email : { required : true, email : true, remote : { url : baseURL + "checkEmailExists", type :"post", data : { userId : function(){ return $("#userId").val(); } } } },
 		},
 		messages:{
 			fname :{ required : "This field is required" },
 			mobile : { required : "This field is required", digits : "Please enter numbers only" },
+			email : { required : "This field is required", email : "Please enter valid email address", remote : "Email already taken" },
 		}
 	});
 

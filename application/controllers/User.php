@@ -334,6 +334,8 @@ class User extends BaseController
             
         $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
         $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+        $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
+        
         
         if($this->form_validation->run() == FALSE)
         {
@@ -343,8 +345,9 @@ class User extends BaseController
         {
             $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
             $mobile = $this->security->xss_clean($this->input->post('mobile'));
+            $email = strtolower($this->security->xss_clean($this->input->post('email')));
             
-            $userInfo = array('name'=>$name, 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+            $userInfo = array('name'=>$name, 'email'=>$email, 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
             
             $result = $this->user_model->editUser($userInfo, $this->vendorId);
             
