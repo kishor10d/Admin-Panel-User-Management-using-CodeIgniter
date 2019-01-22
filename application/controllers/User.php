@@ -334,8 +334,7 @@ class User extends BaseController
             
         $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
         $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-        $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-        
+        $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]|callback_emailExists');        
         
         if($this->form_validation->run() == FALSE)
         {
@@ -406,6 +405,30 @@ class User extends BaseController
                 redirect('profile/'.$active);
             }
         }
+    }
+
+    /**
+     * This function is used to check whether email already exist or not
+     * @param {string} $email : This is users email
+     */
+    function emailExists($email)
+    {
+        $userId = $this->vendorId;
+        $return = false;
+
+        if(empty($userId)){
+            $result = $this->user_model->checkEmailExists($email);
+        } else {
+            $result = $this->user_model->checkEmailExists($email, $userId);
+        }
+
+        if(empty($result)){ $return = true; }
+        else {
+            $this->form_validation->set_message('emailExists', 'The {field} already taken');
+            $return = false;
+        }
+
+        return $return;
     }
 }
 
