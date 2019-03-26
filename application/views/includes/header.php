@@ -101,18 +101,18 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview">
+            <li>
               <a href="<?php echo base_url(); ?>dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li class="treeview">
+            <li>
               <a href="#" >
                 <i class="fa fa-plane"></i>
                 <span>New Task</span>
               </a>
             </li>
-            <li class="treeview">
+            <li>
               <a href="#" >
                 <i class="fa fa-ticket"></i>
                 <span>My Tasks</span>
@@ -155,13 +155,13 @@
             if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {
             ?>
-            <li class="treeview">
+            <li>
               <a href="#" >
                 <i class="fa fa-thumb-tack"></i>
                 <span>Task Status</span>
               </a>
             </li>
-            <li class="treeview">
+            <li>
               <a href="#" >
                 <i class="fa fa-upload"></i>
                 <span>Task Uploads</span>
@@ -172,13 +172,13 @@
             if($role == ROLE_ADMIN)
             {
             ?>
-            <li class="treeview">
+            <li>
               <a href="<?php echo base_url(); ?>userListing">
                 <i class="fa fa-users"></i>
                 <span>Users</span>
               </a>
             </li>
-            <li class="treeview">
+            <li>
               <a href="#" >
                 <i class="fa fa-files-o"></i>
                 <span>Reports</span>
