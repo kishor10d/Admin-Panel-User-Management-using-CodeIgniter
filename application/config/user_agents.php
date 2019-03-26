@@ -61,7 +61,7 @@ $platforms = array(
 $browsers = array(
 	'OPR'			=> 'Opera',
 	'Flock'			=> 'Flock',
-	'Edge'			=> 'Spartan',
+	'Edge'			=> 'Edge',
 	'Chrome'		=> 'Chrome',
 	// Opera 10+ always reports Opera/9.80 and appends Version/<real version> to the user agent string
 	'Opera.*?Version'	=> 'Opera',
@@ -110,6 +110,7 @@ $mobiles = array(
 	// Phones and Manufacturers
 	'motorola'		=> 'Motorola',
 	'nokia'			=> 'Nokia',
+	'nexus'			=> 'Nexus',
 	'palm'			=> 'Palm',
 	'iphone'		=> 'Apple iPhone',
 	'ipad'			=> 'iPad',
