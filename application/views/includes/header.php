@@ -146,7 +146,7 @@
 	?>
 	    	<li class="nav-item">
 	    	  <a href="<?php echo base_url(); ?>userListing" class="nav-link">
-	    	    <i class="nav-icon far fa-users"></i>
+	    	    <i class="nav-icon fa fa-users"></i>
 	    	    <p>Users</p>
 	    	  </a>
 	    	</li>
@@ -159,6 +159,7 @@
 
 
 
+  <li class="nav-header">Profile Settings</li>
 
 	    	<li class="nav-item">
 	    	  <a href="<?php echo base_url(); ?>profile" class="nav-link">
