@@ -67,21 +67,6 @@ class Login extends CI_Controller
             
             if(!empty($result))
             {
-                $this->load->helper('cookie');
-
-                if ($this->input->post("chkremember"))
-                {
-                    $this->input->set_cookie('uemail', $email, 86500); /* Create cookie for store emailid */
-                    $this->input->set_cookie('upassword', $password, 86500); /* Create cookie for password */
-                }
-                else
-                {
-                    delete_cookie('uemail'); /* Delete email cookie */
-                    delete_cookie('upassword'); /* Delete password cookie */
-                }
-
-
-
                 $lastLogin = $this->login_model->lastLoginInfo($result->userId);
 
                 $sessionArray = array('userId'=>$result->userId,                    
