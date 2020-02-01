@@ -8,30 +8,40 @@ $roleId = $userInfo->roleId;
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        <i class="fa fa-users"></i> User Management
-        <small>Add / Edit User</small>
-      </h1>
-    </section>
-    
-    <section class="content">
-    
-        <div class="row">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>
+              <i class="fa fa-users"></i> User Management
+              <small>Edit User</small>
+            </h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Management</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
             <!-- left column -->
             <div class="col-md-8">
               <!-- general form elements -->
-                
-                
-                
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Enter User Details</h3>
-                    </div><!-- /.box-header -->
+                <div class="card card-outline card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Enter User Details</h3>
+                    </div><!-- /.card-header -->
                     <!-- form start -->
                     
                     <form role="form" action="<?php echo base_url() ?>editUser" method="post" id="editUser" role="form">
-                        <div class="box-body">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">                                
                                     <div class="form-group">
@@ -89,9 +99,9 @@ $roleId = $userInfo->roleId;
                                     </div>
                                 </div>    
                             </div>
-                        </div><!-- /.box-body -->
+                        </div><!-- /.card-body -->
     
-                        <div class="box-footer">
+                        <div class="card-footer">
                             <input type="submit" class="btn btn-primary" value="Submit" />
                             <input type="reset" class="btn btn-default" value="Reset" />
                         </div>
@@ -128,7 +138,8 @@ $roleId = $userInfo->roleId;
                 </div>
             </div>
         </div>    
-    </section>
+    </div>    
+  </div>    
 </div>
 
 <script src="<?php echo base_url(); ?>assets/js/editUser.js" type="text/javascript"></script>

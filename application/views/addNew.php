@@ -6,7 +6,7 @@
           <div class="col-sm-6">
             <h1>
               <i class="fa fa-users"></i> User Management
-              <small>Add, Edit, Delete</small>
+              <small>Add User</small>
             </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
