@@ -1,26 +1,39 @@
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
 
-
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
           <b>CodeInsect</b> Admin System | Version 1.5
-        </div>
-        <strong>Copyright &copy; 2014-2015 <a href="<?php echo base_url(); ?>">CodeInsect</a>.</strong> All rights reserved.
-    </footer>
-    
-    <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js" type="text/javascript"></script>
-    <!-- <script src="<?php echo base_url(); ?>assets/dist/js/pages/dashboard.js" type="text/javascript"></script> -->
-    <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var windowURL = window.location.href;
-        pageURL = windowURL.substring(0, windowURL.lastIndexOf('/'));
-        var x= $('a[href="'+pageURL+'"]');
-            x.addClass('active');
-            x.parent().addClass('active');
-        var y= $('a[href="'+windowURL+'"]');
-            y.addClass('active');
-            y.parent().addClass('active');
-    </script>
-  </body>
+     <!--  Anything you want -->
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2014-2019 <a href="<?php echo base_url(); ?>">CodeInsect</a>.</strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+<script type="text/javascript">
+  /** add active class and stay opened when selected */
+  var url = window.location;
+
+  // for sidebar menu entirely but not cover treeview
+  $('ul.nav-sidebar a').filter(function() {
+      return this.href == url;
+  }).addClass('active');
+
+  // for treeview
+  $('ul.nav-treeview a').filter(function() {
+      return this.href == url;
+  }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
+  </script>
+
+</body>
 </html>

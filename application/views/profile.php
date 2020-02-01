@@ -9,52 +9,74 @@ $role = $userInfo->role;
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        <i class="fa fa-user-circle"></i> My Profile
-        <small>View or modify information</small>
-      </h1>
-    </section>
-    
-    <section class="content">
-    
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>
+              <i class="fa fa-user-circle"></i> My Profile
+              <small>View or modify information</small>
+            </h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Management</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
         <div class="row">
             <!-- left column -->
             <div class="col-md-3">
               <!-- general form elements -->
+              <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                      <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?>assets/dist/img/avatar.png" lt="User profile picture">
+                      </div>
 
+                 <h3 class="profile-username text-center"><?= $name ?></h3>
 
-                <div class="box box-warning">
-                    <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url(); ?>assets/dist/img/avatar.png" alt="User profile picture">
-                        <h3 class="profile-username text-center"><?= $name ?></h3>
+                 <p class="text-muted text-center"><?= $role ?></p>
 
-                        <p class="text-muted text-center"><?= $role ?></p>
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b>Email</b> <a class="pull-right"><?= $email ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Mobile</b> <a class="pull-right"><?= $mobile ?></a>
-                            </li>
-                        </ul>
+                      <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                          <b>Email</b> <a class="float-right"><?= $email ?></a>
+                        </li>
+                        <li class="list-group-item">
+                          <b>Mobile</b> <a class="float-right"><?= $mobile ?></a>
+                        </li>
+                      </ul>
                     </div>
+                    <!-- /.card-body -->
+
+
+                
                 </div>
 
             </div>
 
             <div class="col-md-5">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="<?= ($active == "details")? "active" : "" ?>"><a href="#details" data-toggle="tab">Details</a></li>
-                        <li class="<?= ($active == "changepass")? "active" : "" ?>"><a href="#changepass" data-toggle="tab">Change Password</a></li>                        
-                    </ul>
+              <div class="card">
+                <div class="card-header p-2">
+                  <ul class="nav nav-pills">
+
+                    <li class="nav-item"><a class="nav-link <?= ($active == "details")? "active" : "" ?>" href="#details" data-toggle="tab">Details</a></li>
+                    <li class="nav-item"><a class="nav-link <?= ($active == "changepass")? "active" : "" ?>" href="#changepass" data-toggle="tab">Change Password</a></li>
+                  </ul>
+                </div><!-- /.card-header -->
+                <div class="card-body">
                     <div class="tab-content">
                         <div class="<?= ($active == "details")? "active" : "" ?> tab-pane" id="details">
                             <form action="<?php echo base_url() ?>profileUpdate" method="post" id="editProfile" role="form">
                                 <?php $this->load->helper('form'); ?>
-                                <div class="box-body">
+                                <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">                                
                                             <div class="form-group">
@@ -80,8 +102,8 @@ $role = $userInfo->role;
                                             </div>
                                         </div>
                                     </div>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
+                                </div><!-- /.card-body -->
+                                <div class="card-footer">
                                     <input type="submit" class="btn btn-primary" value="Submit" />
                                     <input type="reset" class="btn btn-default" value="Reset" />
                                 </div>
@@ -89,7 +111,7 @@ $role = $userInfo->role;
                         </div>
                         <div class="<?= ($active == "changepass")? "active" : "" ?> tab-pane" id="changepass">
                             <form role="form" action="<?php echo base_url() ?>changePassword" method="post">
-                                <div class="box-body">
+                                <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -115,17 +137,23 @@ $role = $userInfo->role;
                                             </div>
                                         </div>
                                     </div>
-                                </div><!-- /.box-body -->
-            
-                                <div class="box-footer">
+                                </div><!-- /.card-body -->
+                    
+                                <div class="card-footer">
                                     <input type="submit" class="btn btn-primary" value="Submit" />
                                     <input type="reset" class="btn btn-default" value="Reset" />
                                 </div>
                             </form>
                         </div>                        
                     </div>
-                </div>
+                </div><!-- /.card-body -->
+              </div>
+              <!-- /.nav-tabs-custom -->
             </div>
+            <!-- /.col -->
+
+
+
             <div class="col-md-4">
                 <?php
                     $this->load->helper('form');
@@ -167,7 +195,8 @@ $role = $userInfo->role;
                 </div>
             </div>
         </div>    
-    </section>
+     </div>    
+   </div>    
 </div>
 
 <script src="<?php echo base_url(); ?>assets/js/editUser.js" type="text/javascript"></script>
