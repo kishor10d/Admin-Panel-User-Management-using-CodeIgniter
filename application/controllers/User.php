@@ -36,8 +36,7 @@ class User extends BaseController
      */
     function userListing()
     {
-        if($this->isAdmin() == TRUE)
-        {
+        if(!in_array('viewUser', $this->permission)) {
             $this->loadThis();
         }
         else
@@ -64,14 +63,13 @@ class User extends BaseController
      */
     function addNew()
     {
-        if($this->isAdmin() == TRUE)
-        {
+        if(!in_array('createUser', $this->permission)) {
             $this->loadThis();
         }
         else
         {
             $this->load->model('user_model');
-            $data['roles'] = $this->user_model->getUserRoles();
+            $data['roles'] = $this->user_model->getUserRoles($this->vendorId);
             
             $this->global['pageTitle'] = 'CodeInsect : Add New User';
 
@@ -102,8 +100,7 @@ class User extends BaseController
      */
     function addNewUser()
     {
-        if($this->isAdmin() == TRUE)
-        {
+        if(!in_array('createUser', $this->permission)) {
             $this->loadThis();
         }
         else
@@ -156,8 +153,7 @@ class User extends BaseController
      */
     function editOld($userId = NULL)
     {
-        if($this->isAdmin() == TRUE || $userId == 1)
-        {
+        if(!in_array('updateUser', $this->permission)) {
             $this->loadThis();
         }
         else
@@ -167,7 +163,7 @@ class User extends BaseController
                 redirect('userListing');
             }
             
-            $data['roles'] = $this->user_model->getUserRoles();
+            $data['roles'] = $this->user_model->getUserRoles($userId);
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
             
             $this->global['pageTitle'] = 'CodeInsect : Edit User';
@@ -182,8 +178,7 @@ class User extends BaseController
      */
     function editUser()
     {
-        if($this->isAdmin() == TRUE)
-        {
+        if(!in_array('updateUser', $this->permission)) {
             $this->loadThis();
         }
         else
@@ -248,9 +243,8 @@ class User extends BaseController
      */
     function deleteUser()
     {
-        if($this->isAdmin() == TRUE)
-        {
-            echo(json_encode(array('status'=>'access')));
+        if(!in_array('deleteUser', $this->permission)) {
+            $this->loadThis();
         }
         else
         {
@@ -280,8 +274,7 @@ class User extends BaseController
      */
     function loginHistoy($userId = NULL)
     {
-        if($this->isAdmin() == TRUE)
-        {
+        if(!in_array('viewLoginHistory', $this->permission)) {
             $this->loadThis();
         }
         else

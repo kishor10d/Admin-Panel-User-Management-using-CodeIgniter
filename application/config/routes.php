@@ -73,6 +73,23 @@ $route['profile/(:any)'] = "user/profile/$1";
 $route['profileUpdate'] = "user/profileUpdate";
 $route['profileUpdate/(:any)'] = "user/profileUpdate/$1";
 
+
+
+/*********** GROUP DEFINED ROUTES *******************/
+
+$route['groupListing'] = 'group/groupListing';
+$route['groupListing/(:num)'] = "group/userListing/$1";
+$route['addGroup'] = "group/addGroup";
+$route['addNewGroup'] = "group/addNewGroup";
+$route['editGroup'] = "group/editGroup";
+$route['editGroup/(:num)'] = "group/editGroup/$1";
+$route['editOldGroup'] = "group/editOldGroup";
+$route['deleteGroup'] = "group/deleteGroup";
+$route['deleteBulkGroup'] = "group/deleteBulkGroup";
+
+
+/*********** USER - PROFILE - PASSWORD  DEFINED ROUTES *******************/
+
 $route['loadChangePass'] = "user/loadChangePass";
 $route['changePassword'] = "user/changePassword";
 $route['changePassword/(:any)'] = "user/changePassword/$1";

@@ -86,7 +86,7 @@ class Login extends CI_Controller
 
                 $sessionArray = array('userId'=>$result->userId,                    
                                         'role'=>$result->roleId,
-                                        'roleText'=>$result->role,
+                                        'roleText'=>$result->group_name,
                                         'name'=>$result->name,
                                         'lastLogin'=> $lastLogin->createdDtm,
                                         'isLoggedIn' => TRUE

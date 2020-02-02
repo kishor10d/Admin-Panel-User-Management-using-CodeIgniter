@@ -4,7 +4,7 @@ $name = $userInfo->name;
 $email = $userInfo->email;
 $mobile = $userInfo->mobile;
 $roleId = $userInfo->roleId;
-$role = $userInfo->role;
+$group_name = $userInfo->group_name;
 ?>
 
 <div class="content-wrapper">
@@ -43,7 +43,7 @@ $role = $userInfo->role;
 
                  <h3 class="profile-username text-center"><?= $name ?></h3>
 
-                 <p class="text-muted text-center"><?= $role ?></p>
+                 <p class="text-muted text-center"><?= $group_name ?></p>
 
                       <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">

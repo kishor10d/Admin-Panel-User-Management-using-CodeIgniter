@@ -15,6 +15,33 @@ class BaseController extends CI_Controller {
 	protected $global = array ();
 	protected $lastLogin = '';
 	
+	var $permission = array();
+	// var $user_permission = '';
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$group_data = array();
+		// if(empty($this->session->userdata('isLoggedIn'))) {
+		// 	$session_data = array('isLoggedIn' => FALSE);
+		// 	$this->session->set_userdata($session_data);
+		// }
+		// else {
+		    $user_id = $this->session->userdata('userId');
+			$this->load->model('group_model');
+			$group_data = $this->group_model->getUserGroupByUserId($user_id);
+
+			if (empty($group_data)) {
+				echo "Any Group Has Not Setted Report Admin";
+				exit;
+			}
+			$this->global['user_permission'] = unserialize($group_data['permission']);
+			$this->permission = unserialize($group_data['permission']);
+		// }
+	}
+
+
 	/**
 	 * Takes mixed data and optionally a status code, then creates the response
 	 *
@@ -50,28 +77,32 @@ class BaseController extends CI_Controller {
 		}
 	}
 	
+
+	// Below Two methods are deprecated isAdmin() and isTicketter()
+	// Now can add group base permission easily
 	/**
 	 * This function is used to check the access
 	 */
-	function isAdmin() {
-		if ($this->role != ROLE_ADMIN) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	// function isAdmin() {
+	// 	if ($this->role != ROLE_ADMIN) {
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
 	
 	/**
 	 * This function is used to check the access
 	 */
-	function isTicketter() {
-		if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	// function isTicketter() {
+	// 	if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
 	
+
 	/**
 	 * This function is used to load the set of views
 	 */

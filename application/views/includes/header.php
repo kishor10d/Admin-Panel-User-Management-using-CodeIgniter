@@ -140,41 +140,105 @@
 	    	  </a>
 	    	</li>
 
-	<?php
-	if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
-	{
-	?>
-	    	<li class="nav-item">
-	    	  <a href="<?php echo base_url(); ?>userListing" class="nav-link">
-	    	    <i class="nav-icon fa fa-users"></i>
-	    	    <p>Users</p>
-	    	  </a>
-	    	</li>
+
+
+  <?php if($user_permission): ?>
+
+
+  <?php if(in_array('createUser', $user_permission) || in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>
+  <li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+      <i class="nav-icon fas fa-users"></i>
+      <p>
+       User
+       <i class="right fas fa-angle-left"></i>
+     </p>
+   </a>
+   <ul class="nav nav-treeview">
+    <?php if(in_array('createUser', $user_permission)): ?>
+      <li class="nav-item">
+        <a href="<?php echo base_url(); ?>addNew" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Add User</p>
+      </a>
+    </li> 
+  <?php endif; ?>
+  <?php if(in_array('updateUser', $user_permission) || in_array('viewUser', $user_permission) || in_array('deleteUser', $user_permission)): ?>
+  <li class="nav-item">
+    <a href="<?php echo base_url(); ?>userListing" class="nav-link">
+    <i class="far fa-circle nav-icon"></i>
+    <p>Manage User</p>
+  </a>
+  </li> 
+  <?php endif; ?>
+
+  </ul>
+  </li>
+  <?php endif; ?>
 
 
 
-	<?php
-	}
-	?>
+
+  <li class="nav-header">Add Dynamic Roles -- New</li>
+
+
+
+  <?php if(in_array('createGroup', $user_permission) || in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>
+  <li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+      <i class="nav-icon fas fa-layer-group"></i>
+      <p>
+       Group
+       <i class="right fas fa-angle-left"></i>
+     </p>
+   </a>
+   <ul class="nav nav-treeview">
+    <?php if(in_array('createGroup', $user_permission)): ?>
+      <li class="nav-item">
+            <a href="<?php echo base_url('addGroup') ?>" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Add Group</p>
+      </a>
+    </li> 
+  <?php endif; ?>
+  <?php if(in_array('updateGroup', $user_permission) || in_array('viewGroup', $user_permission) || in_array('deleteGroup', $user_permission)): ?>
+  <li class="nav-item">
+    <a href="<?php echo base_url('groupListing') ?>" class="nav-link">
+    <i class="far fa-circle nav-icon"></i>
+    <p>Manage Group</p>
+  </a>
+  </li> 
+  <?php endif; ?>
+
+  </ul>
+  </li>
+  <?php endif; ?>
+
+
 
 
 
   <li class="nav-header">Profile Settings</li>
 
-	    	<li class="nav-item">
-	    	  <a href="<?php echo base_url(); ?>profile" class="nav-link">
-	    	    <i class="nav-icon far fa-user-circle"></i>
-	    	    <p>Profile</p>
-	    	  </a>
-	    	</li>
+  <?php if(in_array('viewProfile', $user_permission) || in_array('updateSetting', $user_permission)): ?>
+    <li class="nav-item">
+      <a href="<?php echo base_url(); ?>profile" class="nav-link">
+        <i class="nav-icon far fa-user-circle"></i>
+        <p>Profile</p>
+      </a>
+    </li>
+  <?php endif; ?>
+
+  <?php endif; ?>
+  <!-- user permission info -->
 
 
-	    	<li class="nav-item">
-	    	  <a href="<?php echo base_url(); ?>logout" class="nav-link">
-	    	    <i class="nav-icon fas fa-sign-out-alt"></i>
-	    	    <p>Logout</p>
-	    	  </a>
-	    	</li>
+  	<li class="nav-item">
+  	  <a href="<?php echo base_url(); ?>logout" class="nav-link">
+  	    <i class="nav-icon fas fa-sign-out-alt"></i>
+  	    <p>Logout</p>
+  	  </a>
+  	</li>
 
 
 
