@@ -74,13 +74,6 @@ class CI_DB_pdo_oci_forge extends CI_DB_pdo_forge {
 	 */
 	protected $_unsigned		= FALSE;
 
-	/**
-	 * NULL value representation in CREATE/ALTER TABLE statements
-	 *
-	 * @var	string
-	 */
-	protected $_null		= 'NULL';
-
 	// --------------------------------------------------------------------
 
 	/**
