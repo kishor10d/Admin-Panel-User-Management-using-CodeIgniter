@@ -179,6 +179,12 @@
               </a>
             </li>
             <li>
+              <a href="<?php echo base_url(); ?>roles/roleListing">
+                <i class="fa fa-user-circle-o " aria-hidden="true"></i>
+                <span>Roles</span>
+              </a>
+            </li>
+            <li>
               <a href="#" >
                 <i class="fa fa-files-o"></i>
                 <span>Reports</span>
