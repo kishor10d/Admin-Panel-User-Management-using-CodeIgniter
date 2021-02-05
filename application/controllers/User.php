@@ -36,7 +36,7 @@ class User extends BaseController
      */
     function userListing()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -64,7 +64,7 @@ class User extends BaseController
      */
     function addNew()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -102,7 +102,7 @@ class User extends BaseController
      */
     function addNewUser()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -128,19 +128,18 @@ class User extends BaseController
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
+                $isAdmin = $this->input->post('isAdmin');
                 
-                $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
-                                    'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
+                $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
+                        'name'=> $name, 'mobile'=>$mobile, 'isAdmin'=>$isAdmin,
+                        'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
                 
                 $this->load->model('user_model');
                 $result = $this->user_model->addNewUser($userInfo);
                 
-                if($result > 0)
-                {
+                if($result > 0){
                     $this->session->set_flashdata('success', 'New User created successfully');
-                }
-                else
-                {
+                } else {
                     $this->session->set_flashdata('error', 'User creation failed');
                 }
                 
@@ -156,7 +155,7 @@ class User extends BaseController
      */
     function editOld($userId = NULL)
     {
-        if($this->isAdmin() == TRUE || $userId == 1)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -169,7 +168,7 @@ class User extends BaseController
             
             $data['roles'] = $this->user_model->getUserRoles();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
-            
+
             $this->global['pageTitle'] = 'CodeInsect : Edit User';
             
             $this->loadViews("editOld", $this->global, $data, NULL);
@@ -182,7 +181,7 @@ class User extends BaseController
      */
     function editUser()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -210,19 +209,20 @@ class User extends BaseController
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
+                $isAdmin = $this->input->post('isAdmin');
                 
                 $userInfo = array();
                 
                 if(empty($password))
                 {
-                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name, 'mobile'=>$mobile,
+                        'isAdmin'=>$isAdmin, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
                 }
                 else
                 {
                     $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
-                        'name'=>ucwords($name), 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 
-                        'updatedDtm'=>date('Y-m-d H:i:s'));
+                        'name'=>ucwords($name), 'mobile'=>$mobile, 'isAdmin'=>$isAdmin, 
+                        'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
                 }
                 
                 $result = $this->user_model->editUser($userInfo, $userId);
@@ -248,7 +248,7 @@ class User extends BaseController
      */
     function deleteUser()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             echo(json_encode(array('status'=>'access')));
         }
@@ -280,7 +280,7 @@ class User extends BaseController
      */
     function loginHistoy($userId = NULL)
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }

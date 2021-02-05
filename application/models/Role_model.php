@@ -149,140 +149,56 @@ class Role_model extends CI_Model
     }
 
 
-    /**
-     * This function is used to match users password for change password
-     * @param number $userId : This is user id
-     */
-    function matchOldPassword($userId, $oldPassword)
+    function insertAccessMatrix($accessMatrix)
     {
-        $this->db->select('userId, password');
-        $this->db->where('userId', $userId);        
-        $this->db->where('isDeleted', 0);
-        $query = $this->db->get('tbl_users');
-        
-        $user = $query->result();
-
-        if(!empty($user)){
-            if(verifyHashedPassword($oldPassword, $user[0]->password)){
-                return $user;
-            } else {
-                return array();
-            }
-        } else {
-            return array();
-        }
-    }
-    
-    /**
-     * This function is used to change users password
-     * @param number $userId : This is user id
-     * @param array $userInfo : This is user updation info
-     */
-    function changePassword($userId, $userInfo)
-    {
-        $this->db->where('userId', $userId);
-        $this->db->where('isDeleted', 0);
-        $this->db->update('tbl_users', $userInfo);
-        
-        return $this->db->affected_rows();
+        $this->db->trans_start();
+        $this->db->insert('tbl_access_matrix', $accessMatrix);
+        $this->db->trans_complete();
     }
 
-
-    /**
-     * This function is used to get user login history
-     * @param number $userId : This is user id
-     */
-    function loginHistoryCount($userId, $searchText, $fromDate, $toDate)
+    function getFromAccessMatrix2()
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.sessionData, BaseTbl.machineIp, BaseTbl.userAgent, BaseTbl.agentString, BaseTbl.platform, BaseTbl.createdDtm');
-        if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.sessionData LIKE '%".$searchText."%')";
-            $this->db->where($likeCriteria);
-        }
-        if(!empty($fromDate)) {
-            $likeCriteria = "DATE_FORMAT(BaseTbl.createdDtm, '%Y-%m-%d' ) >= '".date('Y-m-d', strtotime($fromDate))."'";
-            $this->db->where($likeCriteria);
-        }
-        if(!empty($toDate)) {
-            $likeCriteria = "DATE_FORMAT(BaseTbl.createdDtm, '%Y-%m-%d' ) <= '".date('Y-m-d', strtotime($toDate))."'";
-            $this->db->where($likeCriteria);
-        }
-        if($userId >= 1){
-            $this->db->where('BaseTbl.userId', $userId);
-        }
-        $this->db->from('tbl_last_login as BaseTbl');
+        $this->db->select('*');
+        $this->db->from('tbl_access_matrix');
+        $this->db->where('roleId', 1);
         $query = $this->db->get();
         
-        return $query->num_rows();
-    }
-
-    /**
-     * This function is used to get user login history
-     * @param number $userId : This is user id
-     * @param number $page : This is pagination offset
-     * @param number $segment : This is pagination limit
-     * @return array $result : This is result
-     */
-    function loginHistory($userId, $searchText, $fromDate, $toDate, $page, $segment)
-    {
-        $this->db->select('BaseTbl.userId, BaseTbl.sessionData, BaseTbl.machineIp, BaseTbl.userAgent, BaseTbl.agentString, BaseTbl.platform, BaseTbl.createdDtm');
-        $this->db->from('tbl_last_login as BaseTbl');
-        if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.sessionData  LIKE '%".$searchText."%')";
-            $this->db->where($likeCriteria);
-        }
-        if(!empty($fromDate)) {
-            $likeCriteria = "DATE_FORMAT(BaseTbl.createdDtm, '%Y-%m-%d' ) >= '".date('Y-m-d', strtotime($fromDate))."'";
-            $this->db->where($likeCriteria);
-        }
-        if(!empty($toDate)) {
-            $likeCriteria = "DATE_FORMAT(BaseTbl.createdDtm, '%Y-%m-%d' ) <= '".date('Y-m-d', strtotime($toDate))."'";
-            $this->db->where($likeCriteria);
-        }
-        if($userId >= 1){
-            $this->db->where('BaseTbl.userId', $userId);
-        }
-        $this->db->order_by('BaseTbl.id', 'DESC');
-        $this->db->limit($page, $segment);
-        $query = $this->db->get();
-        
-        $result = $query->result();        
+        $result = $query->row();
         return $result;
     }
 
-    /**
-     * This function used to get user information by id
-     * @param number $userId : This is user id
-     * @return array $result : This is user information
-     */
-    function getUserInfoById($userId)
+    function generateMatrix()
     {
-        $this->db->select('userId, name, email, mobile, roleId');
-        $this->db->from('tbl_users');
-        $this->db->where('isDeleted', 0);
-        $this->db->where('userId', $userId);
+        $this->db->select('*');
+        $this->db->from('tbl_roles');
         $query = $this->db->get();
         
-        return $query->row();
-    }
+        $roles = $query->result();
 
-    /**
-     * This function used to get user information by id with role
-     * @param number $userId : This is user id
-     * @return aray $result : This is user information
-     */
-    function getUserInfoWithRole($userId)
-    {
-        $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.roleId, Roles.role');
-        $this->db->from('tbl_users as BaseTbl');
-        $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
-        $this->db->where('BaseTbl.userId', $userId);
-        $this->db->where('BaseTbl.isDeleted', 0);
-        $query = $this->db->get();
-        
-        return $query->row();
-    }
+        if(empty($result))
+        {
+            foreach($roles as $role)
+            {
+                $this->db->select('*');
+                $this->db->from('tbl_access_matrix');
+                $this->db->where('roleId', $role->roleId);
+                $query2 = $this->db->get();
 
+                $accessMatrices = $query2->result();
+
+                if(empty($accessMatrices))
+                {
+                    $modules = array(        
+                        array('module'=>'Task', 'total_access'=>0, 'list'=>0,  'create_records'=>0,  'edit_records'=>0,  'delete_records'=>0),
+                        array('module'=>'Bookings', 'total_access'=>0, 'list'=>0,  'create_records'=>0,  'edit_records'=>0,  'delete_records'=>0)
+                    );
+                    $accessMatrix = array('roleId'=> $role->roleId, 'access'=>json_encode($modules), 'createdBy'=> 1, 'createdDtm'=>date('Y-m-d H:i:s'));
+
+                    $this->insertAccessMatrix($accessMatrix);
+                }
+            }
+        }
+    }
 }
 
   

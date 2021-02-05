@@ -69,17 +69,21 @@ class Login extends CI_Controller
             {
                 $lastLogin = $this->login_model->lastLoginInfo($result->userId);
 
+                $accessInfo = $this->accessInfo($result->roleId);
+
                 $sessionArray = array('userId'=>$result->userId,                    
                                         'role'=>$result->roleId,
                                         'roleText'=>$result->role,
                                         'name'=>$result->name,
+                                        'isAdmin'=>$result->isAdmin,
+                                        'accessInfo'=>$accessInfo,
                                         'lastLogin'=> $lastLogin->createdDtm,
                                         'isLoggedIn' => TRUE
                                 );
 
                 $this->session->set_userdata($sessionArray);
 
-                unset($sessionArray['userId'], $sessionArray['isLoggedIn'], $sessionArray['lastLogin']);
+                unset($sessionArray['userId'], $sessionArray['isLoggedIn'], $sessionArray['lastLogin'], $sessionArray['accessInfo']);
 
                 $loginInfo = array("userId"=>$result->userId, "sessionData" => json_encode($sessionArray), "machineIp"=>$_SERVER['REMOTE_ADDR'], "userAgent"=>getBrowserAgent(), "agentString"=>$this->agent->agent_string(), "platform"=>$this->agent->platform());
 
@@ -251,6 +255,17 @@ class Login extends CI_Controller
 
             redirect("/login");
         }
+    }
+
+    private function accessInfo($roleId)
+    {
+        $finalMatrixArray = [];
+        $matrix = $this->login_model->getRoleAccessMatrix($roleId);
+        $accessMatrix = json_decode($matrix->access);
+        foreach($accessMatrix as $moduleMatrix) {
+            $finalMatrixArray[$moduleMatrix->module] = $moduleMatrix;
+        }
+        return $finalMatrixArray;
     }
 }
 

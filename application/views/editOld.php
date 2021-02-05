@@ -4,6 +4,7 @@ $name = $userInfo->name;
 $email = $userInfo->email;
 $mobile = $userInfo->mobile;
 $roleId = $userInfo->roleId;
+$isAdmin = $userInfo->isAdmin;
 ?>
 
 <div class="content-wrapper">
@@ -87,8 +88,21 @@ $roleId = $userInfo->roleId;
                                             ?>
                                         </select>
                                     </div>
-                                </div>    
+                                </div> 
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="isAdmin">User Type</label>
+                                        <select class="form-control required" id="isAdmin" name="isAdmin">
+                                            <option value="<?= REGULAR_USER ?>" <?php if($isAdmin == REGULAR_USER) {echo "selected=selected";} ?>>Regular User</option>
+                                            <option value="<?= SYSTEM_ADMIN ?>" <?php if($isAdmin == SYSTEM_ADMIN) {echo "selected=selected";} ?>>System Administrator</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div> 
                         </div><!-- /.box-body -->
     
                         <div class="box-footer">

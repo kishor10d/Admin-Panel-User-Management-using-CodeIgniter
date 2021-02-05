@@ -91,6 +91,10 @@ define('ROLE_ADMIN',                            '1');
 define('ROLE_MANAGER',                         	'2');
 define('ROLE_EMPLOYEE',                         '3');
 
+
+define('SYSTEM_ADMIN',                          1);
+define('REGULAR_USER',                          2);
+
 define('SEGMENT',								2);
 
 define('ACTIVE',								1); // STATUS Active

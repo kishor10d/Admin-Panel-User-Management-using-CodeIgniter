@@ -17,7 +17,7 @@ class Login_model extends CI_Model
      */
     function loginMe($email, $password)
     {
-        $this->db->select('BaseTbl.userId, BaseTbl.password, BaseTbl.name, BaseTbl.roleId, Roles.role');
+        $this->db->select('BaseTbl.userId, BaseTbl.password, BaseTbl.name, BaseTbl.roleId, BaseTbl.isAdmin, Roles.role');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Roles','Roles.roleId = BaseTbl.roleId');
         $this->db->where('BaseTbl.email', $email);
@@ -138,6 +138,21 @@ class Login_model extends CI_Model
         $query = $this->db->get('tbl_last_login as BaseTbl');
 
         return $query->row();
+    }
+
+    /**
+     * This function used to get access matrix of a role by roleId
+     * @param number $roleId : This is roleId of user
+     */
+    function getRoleAccessMatrix($roleId)
+    {
+        $this->db->select('roleId, access');
+        $this->db->from('tbl_access_matrix');
+        $this->db->where('roleId', $roleId);
+        $query = $this->db->get();
+        
+        $result = $query->row();
+        return $result;
     }
 }
 

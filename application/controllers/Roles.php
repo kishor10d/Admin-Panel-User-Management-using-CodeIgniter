@@ -20,13 +20,22 @@ class Roles extends BaseController
         $this->load->model('role_model', 'rm');
         $this->isLoggedIn();   
     }
+
+    /**
+     * This is default routing method
+     * It routes to default listing page
+     */
+    public function index()
+    {
+        redirect('roleListing/');
+    }
     
     /**
      * This function is used to load the role list
      */
     function roleListing()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -54,7 +63,7 @@ class Roles extends BaseController
      */
     function add()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -89,7 +98,7 @@ class Roles extends BaseController
      */
     function addNewRole()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -115,6 +124,7 @@ class Roles extends BaseController
                 
                 if($result > 0)
                 {
+                    $this->addRoleMatrix($result);
                     $this->session->set_flashdata('success', 'New Role created successfully');
                 }
                 else
@@ -134,7 +144,7 @@ class Roles extends BaseController
      */
     function edit($roleId = NULL)
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -159,7 +169,7 @@ class Roles extends BaseController
      */
     function editRole()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             $this->loadThis();
         }
@@ -206,7 +216,7 @@ class Roles extends BaseController
      */
     function deleteUser()
     {
-        if($this->isAdmin() == TRUE)
+        if(!$this->isAdmin())
         {
             echo(json_encode(array('status'=>'access')));
         }
@@ -221,173 +231,55 @@ class Roles extends BaseController
             else { echo(json_encode(array('status'=>FALSE))); }
         }
     }
-    
-    /**
-     * Page not found : error 404
-     */
-    function pageNotFound()
+
+
+    private function addRoleMatrix($roleId)
     {
-        $this->global['pageTitle'] = 'CodeInsect : 404 - Page Not Found';
-        
-        $this->loadViews("404", $this->global, NULL, NULL);
+        $this->load->config('modules');
+
+        $modules = $this->config->item('moduleList');
+
+        $accessMatrix = array('roleId'=>$roleId, 'access'=>json_encode($modules), 'createdBy'=> $this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
+
+        $this->rm->insertAccessMatrix($accessMatrix);
     }
 
-    /**
-     * This function used to show login history
-     * @param number $userId : This is user id
-     */
-    function loginHistoy($userId = NULL)
+
+    public function matrix()
     {
-        if($this->isAdmin() == TRUE)
-        {
-            $this->loadThis();
-        }
-        else
-        {
-            $userId = ($userId == NULL ? 0 : $userId);
+        $this->load->config('modules');
 
-            $searchText = $this->input->post('searchText');
-            $fromDate = $this->input->post('fromDate');
-            $toDate = $this->input->post('toDate');
+        $modules = $this->config->item('moduleList');
 
-            $data["userInfo"] = $this->user_model->getUserInfoById($userId);
+        $accessMatrix = array('roleId'=>1, 'access'=>json_encode($modules));
 
-            $data['searchText'] = $searchText;
-            $data['fromDate'] = $fromDate;
-            $data['toDate'] = $toDate;
-            
-            $this->load->library('pagination');
-            
-            $count = $this->user_model->loginHistoryCount($userId, $searchText, $fromDate, $toDate);
-
-            $returns = $this->paginationCompress ( "login-history/".$userId."/", $count, 10, 3);
-
-            $data['userRecords'] = $this->user_model->loginHistory($userId, $searchText, $fromDate, $toDate, $returns["page"], $returns["segment"]);
-            
-            $this->global['pageTitle'] = 'CodeInsect : User Login History';
-            
-            $this->loadViews("loginHistory", $this->global, $data, NULL);
-        }        
+        $this->rm->insertAccessMatrix2($accessMatrix);
     }
 
-    /**
-     * This function is used to show users profile
-     */
-    function profile($active = "details")
+    public function getMatrix()
     {
-        $data["userInfo"] = $this->user_model->getUserInfoWithRole($this->vendorId);
-        $data["active"] = $active;
-        
-        $this->global['pageTitle'] = $active == "details" ? 'CodeInsect : My Profile' : 'CodeInsect : Change Password';
-        $this->loadViews("profile", $this->global, $data, NULL);
+        $matrix = $this->rm->getFromAccessMatrix2();
+
+        pre(json_decode($matrix->access));
+
+        $accessMatrix = json_decode($matrix->access);
+
+        $finalMatrixArray = [];
+
+        foreach($accessMatrix as $moduleMatrix) {
+            $finalMatrixArray[$moduleMatrix->module] = $moduleMatrix;
+        }
+
+        pre($finalMatrixArray);
+
+        pre($finalMatrixArray['Task']->module);
     }
 
-    /**
-     * This function is used to update the user details
-     * @param text $active : This is flag to set the active tab
-     */
-    function profileUpdate($active = "details")
+    public function generateMatrix()
     {
-        $this->load->library('form_validation');
-            
-        $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-        $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-        $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]|callback_emailExists');        
-        
-        if($this->form_validation->run() == FALSE)
-        {
-            $this->profile($active);
-        }
-        else
-        {
-            $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
-            $mobile = $this->security->xss_clean($this->input->post('mobile'));
-            $email = strtolower($this->security->xss_clean($this->input->post('email')));
-            
-            $userInfo = array('name'=>$name, 'email'=>$email, 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
-            
-            $result = $this->user_model->editUser($userInfo, $this->vendorId);
-            
-            if($result == true)
-            {
-                $this->session->set_userdata('name', $name);
-                $this->session->set_flashdata('success', 'Profile updated successfully');
-            }
-            else
-            {
-                $this->session->set_flashdata('error', 'Profile updation failed');
-            }
-
-            redirect('profile/'.$active);
-        }
-    }
-
-    /**
-     * This function is used to change the password of the user
-     * @param text $active : This is flag to set the active tab
-     */
-    function changePassword($active = "changepass")
-    {
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('oldPassword','Old password','required|max_length[20]');
-        $this->form_validation->set_rules('newPassword','New password','required|max_length[20]');
-        $this->form_validation->set_rules('cNewPassword','Confirm new password','required|matches[newPassword]|max_length[20]');
-        
-        if($this->form_validation->run() == FALSE)
-        {
-            $this->profile($active);
-        }
-        else
-        {
-            $oldPassword = $this->input->post('oldPassword');
-            $newPassword = $this->input->post('newPassword');
-            
-            $resultPas = $this->user_model->matchOldPassword($this->vendorId, $oldPassword);
-            
-            if(empty($resultPas))
-            {
-                $this->session->set_flashdata('nomatch', 'Your old password is not correct');
-                redirect('profile/'.$active);
-            }
-            else
-            {
-                $usersData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
-                                'updatedDtm'=>date('Y-m-d H:i:s'));
-                
-                $result = $this->user_model->changePassword($this->vendorId, $usersData);
-                
-                if($result > 0) { $this->session->set_flashdata('success', 'Password updation successful'); }
-                else { $this->session->set_flashdata('error', 'Password updation failed'); }
-                
-                redirect('profile/'.$active);
-            }
-        }
-    }
-
-    /**
-     * This function is used to check whether email already exist or not
-     * @param {string} $email : This is users email
-     */
-    function emailExists($email)
-    {
-        $userId = $this->vendorId;
-        $return = false;
-
-        if(empty($userId)){
-            $result = $this->user_model->checkEmailExists($email);
-        } else {
-            $result = $this->user_model->checkEmailExists($email, $userId);
-        }
-
-        if(empty($result)){ $return = true; }
-        else {
-            $this->form_validation->set_message('emailExists', 'The {field} already taken');
-            $return = false;
-        }
-
-        return $return;
+        $this->rm->generateMatrix();
     }
 }
+
 
 ?>
