@@ -149,6 +149,22 @@ class Role_model extends CI_Model
     }
 
 
+    /**
+     * This function used to get access matrix of a role by roleId
+     * @param number $roleId : This is roleId of user
+     */
+    function getRoleAccessMatrix($roleId)
+    {
+        $this->db->select('roleId, access');
+        $this->db->from('tbl_access_matrix');
+        $this->db->where('roleId', $roleId);
+        $query = $this->db->get();
+        
+        $result = $query->row();
+        return $result;
+    }
+
+
     function insertAccessMatrix($accessMatrix)
     {
         $this->db->trans_start();
@@ -198,6 +214,14 @@ class Role_model extends CI_Model
                 }
             }
         }
+    }
+
+    function updateAccessMatrix($roleId, $accessMatrix)
+    {
+        $this->db->where('roleId', $roleId);
+        $this->db->update('tbl_access_matrix', $accessMatrix);
+
+        return $this->db->affected_rows();
     }
 }
 

@@ -156,6 +156,11 @@ class Roles extends BaseController
             }
             
             $data['roleInfo'] = $this->rm->getRoleInfo($roleId);
+            $roleAccessMatrix = $this->rm->getRoleAccessMatrix($roleId);
+            $data['roleAccessMatrix'] = json_decode($roleAccessMatrix->access);
+            $data['moduleList'] = $this->config->item('moduleList');
+
+            // pre($data); die;
             
             $this->global['pageTitle'] = 'CodeInsect : Edit Role';
             
@@ -209,30 +214,6 @@ class Roles extends BaseController
         }
     }
 
-
-    /**
-     * This function is used to delete the user using userId
-     * @return boolean $result : TRUE / FALSE
-     */
-    function deleteUser()
-    {
-        if(!$this->isAdmin())
-        {
-            echo(json_encode(array('status'=>'access')));
-        }
-        else
-        {
-            $userId = $this->input->post('userId');
-            $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
-            
-            $result = $this->user_model->deleteUser($userId, $userInfo);
-            
-            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
-            else { echo(json_encode(array('status'=>FALSE))); }
-        }
-    }
-
-
     private function addRoleMatrix($roleId)
     {
         $this->load->config('modules');
@@ -244,40 +225,39 @@ class Roles extends BaseController
         $this->rm->insertAccessMatrix($accessMatrix);
     }
 
-
-    public function matrix()
+    public function storeAccessMatrix()
     {
+        $roleId = $this->input->post('roleIdForMatrix');
+        $postParams = $this->input->post('access');
+
         $this->load->config('modules');
 
         $modules = $this->config->item('moduleList');
+        $modules2 = [];
 
-        $accessMatrix = array('roleId'=>1, 'access'=>json_encode($modules));
-
-        $this->rm->insertAccessMatrix2($accessMatrix);
-    }
-
-    public function getMatrix()
-    {
-        $matrix = $this->rm->getFromAccessMatrix2();
-
-        pre(json_decode($matrix->access));
-
-        $accessMatrix = json_decode($matrix->access);
-
-        $finalMatrixArray = [];
-
-        foreach($accessMatrix as $moduleMatrix) {
-            $finalMatrixArray[$moduleMatrix->module] = $moduleMatrix;
+        foreach($modules as $module) {
+            $singleModule = ['module'=>$module['module']];
+            foreach($module as $keyMod=>$valMod) {
+                if(isset($postParams[$module['module']][$keyMod])) {
+                    $singleModule[$keyMod] = $postParams[$module['module']][$keyMod] == 'on' ? 1 : $postParams[$module['module']][$keyMod];
+                } else {
+                    $singleModule[$keyMod] = 0;
+                }
+            }
+            $modules2[] = $singleModule;
         }
 
-        pre($finalMatrixArray);
+        $accessMatrix = ['access'=>json_encode($modules2), 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s')];
 
-        pre($finalMatrixArray['Task']->module);
-    }
+        $updated = $this->rm->updateAccessMatrix($roleId, $accessMatrix);
 
-    public function generateMatrix()
-    {
-        $this->rm->generateMatrix();
+        if($updated){
+            $this->session->set_flashdata('success', 'Access matrix updated successfully');
+        } else {
+            $this->session->set_flashdata('error', 'Access matrix updation failed');
+        }
+
+        redirect('roles/edit/'.$roleId);
     }
 }
 
