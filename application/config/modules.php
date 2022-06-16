@@ -10,6 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['moduleList'] = array(
-    array('module'=>'Task', 'total_access'=>0, 'list'=>0,  'create_records'=>0,  'edit_records'=>0,  'delete_records'=>0),
-    array('module'=>'Bookings', 'total_access'=>0, 'list'=>0,  'create_records'=>0,  'edit_records'=>0,  'delete_records'=>0)
+    array('module'=>'Task',
+    	'total_access'=>0, 'list'=>0, 'create_records'=>0, 'edit_records'=>0, 'delete_records'=>0),
+    array('module'=>'Bookings',
+    	'total_access'=>0, 'list'=>0, 'create_records'=>0, 'edit_records'=>0, 'delete_records'=>0)
 );
