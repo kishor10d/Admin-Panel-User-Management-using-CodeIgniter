@@ -150,10 +150,34 @@ class Role_model extends CI_Model
 
 
     /**
-     * This function used to get access matrix of a role by roleId
+     * This function used to get access matrix of a role by roleId.
+     * If the access matrix entry doesn't exists then it creates the matrix.
      * @param number $roleId : This is roleId of user
      */
     function getRoleAccessMatrix($roleId)
+    {
+        $result = $this->getRoleAccessMatrixQuery($roleId);
+        
+        if(is_null($result)) {
+
+            $CI = &get_instance();
+            $modules = $CI->config->item('moduleList');
+
+            $accessMatrix = array('roleId'=> $roleId, 'access'=>json_encode($modules), 'createdBy'=> 1, 'createdDtm'=>date('Y-m-d H:i:s'));
+
+            $this->insertAccessMatrix($accessMatrix);
+
+            $result = $this->getRoleAccessMatrixQuery($roleId);
+        }
+
+        return $result;
+    }
+
+    /**
+     * This function used to get role access matrix by role id
+     * @param number $roleId : This is roleId of user
+     */
+    private function getRoleAccessMatrixQuery($roleId)
     {
         $this->db->select('roleId, access');
         $this->db->from('tbl_access_matrix');
@@ -193,6 +217,9 @@ class Role_model extends CI_Model
 
         if(empty($result))
         {
+            $CI = &get_instance();
+            $modules = $CI->config->item('moduleList');
+
             foreach($roles as $role)
             {
                 $this->db->select('*');
@@ -204,10 +231,6 @@ class Role_model extends CI_Model
 
                 if(empty($accessMatrices))
                 {
-                    $modules = array(        
-                        array('module'=>'Task', 'total_access'=>0, 'list'=>0,  'create_records'=>0,  'edit_records'=>0,  'delete_records'=>0),
-                        array('module'=>'Bookings', 'total_access'=>0, 'list'=>0,  'create_records'=>0,  'edit_records'=>0,  'delete_records'=>0)
-                    );
                     $accessMatrix = array('roleId'=> $role->roleId, 'access'=>json_encode($modules), 'createdBy'=> 1, 'createdDtm'=>date('Y-m-d H:i:s'));
 
                     $this->insertAccessMatrix($accessMatrix);

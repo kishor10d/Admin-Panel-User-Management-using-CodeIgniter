@@ -263,7 +263,7 @@ class Login extends CI_Controller
         $matrix = $this->login_model->getRoleAccessMatrix($roleId);
         $accessMatrix = json_decode($matrix->access);
         foreach($accessMatrix as $moduleMatrix) {
-            $finalMatrixArray[$moduleMatrix->module] = $moduleMatrix;
+            $finalMatrixArray[$moduleMatrix->module] = (array) $moduleMatrix;
         }
         return $finalMatrixArray;
     }

@@ -51,6 +51,8 @@ class BaseController extends CI_Controller {
 			$this->global ['role'] = $this->role;
 			$this->global ['role_text'] = $this->roleText;
 			$this->global ['last_login'] = $this->lastLogin;
+			$this->global ['is_admin'] = $this->isAdmin;
+			$this->global ['access_info'] = $this->accessInfo;
 		}
 	}
 	
@@ -105,7 +107,7 @@ class BaseController extends CI_Controller {
      * @return {null} $result : null
      */
     function loadViews($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
-
+		// pre($this->global); die;
         $this->load->view('includes/header', $headerInfo);
         $this->load->view($viewName, $pageInfo);
         $this->load->view('includes/footer', $footerInfo);

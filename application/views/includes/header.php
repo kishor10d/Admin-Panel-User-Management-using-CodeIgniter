@@ -106,18 +106,6 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li>
-              <a href="#" >
-                <i class="fa fa-plane"></i>
-                <span>New Task</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" >
-                <i class="fa fa-ticket"></i>
-                <span>My Tasks</span>
-              </a>
-            </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-share"></i> <span>Multilevel</span>
@@ -152,24 +140,7 @@
               </ul>
             </li>
             <?php
-            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
-            {
-            ?>
-            <li>
-              <a href="#" >
-                <i class="fa fa-thumb-tack"></i>
-                <span>Task Status</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" >
-                <i class="fa fa-upload"></i>
-                <span>Task Uploads</span>
-              </a>
-            </li>
-            <?php
-            }
-            if($role == ROLE_ADMIN)
+            if($is_admin == 1)
             {
             ?>
             <li>
@@ -188,6 +159,36 @@
               <a href="#" >
                 <i class="fa fa-files-o"></i>
                 <span>Reports</span>
+              </a>
+            </li>
+            <?php
+            }
+            ?>
+            <?php
+            if($is_admin == 1 ||
+                (array_key_exists('Bookings', $access_info) 
+                && ($access_info['Bookings']['list'] == 1 || $access_info['Bookings']['total_access'] == 1)))
+            {
+              ?>
+            <li>
+              <a href="<?php echo base_url(); ?>bookings">
+                <i class="fa fa-users"></i>
+                <span>Bookings</span>
+              </a>
+            </li>
+              <?php
+            }
+            ?>
+            <?php
+            if($is_admin == 1 ||
+                (array_key_exists('Task', $access_info) 
+                && ($access_info['Task']['list'] == 1 || $access_info['Task']['total_access'] == 1)))
+            {
+              ?>
+            <li>
+              <a href="<?php echo base_url(); ?>tasks">
+                <i class="fa fa-users"></i>
+                <span>Tasks</span>
               </a>
             </li>
             <?php
