@@ -11,14 +11,14 @@ For every website, we need some sort of admin panel to monitor over the content 
 1. Login, Logout.
 2. Change Password, Forget Password.
 3. Create, Update, Delete Users.
-4. Predefined Roles (You can change roles and rights as per your project requirement).
+4. User defined Roles & Access (You can create roles and provide rights to the hardcoded modules).
 3. Login history of Users.
 
 
 ## Version Information
 **1) Upto Release 1.2 -** CodeIgniter 2.2, PHP version 5.1.6 or newer, MySQL (4.1+), MySQLi
     
-**2) Latest (master) -** CodeIgniter 3.1.6, PHP version 5.6 or newer, MySQL (5.1+), MySQLi
+**2) Latest (master) -** CodeIgniter 3.1.9, PHP version 5.6 or newer, MySQL (5.1+), MySQLi
 
 ## Installation
 
@@ -49,21 +49,11 @@ To login, I am going to provide the user-email ids and password below.
 
 email : admin@example.com
 
-password : codeinsect
-
-**Manager Account :**
-
-email :  manager@example.com
-
-password : codeinsect
-
-**Employee Account :**
-
-email : employee@example.com
-
-password : codeinsect
+password : admin
 
 Once you logged in with System Administrator account, you can create user or edit previous user if you want.
+You can set passwords for other users.
+In the provided Youtube video, the passwords were different when the video was created. So, please use above passwords.
 
 **Youtube Links :**
 
