@@ -171,9 +171,9 @@
             {
               ?>
             <li>
-              <a href="<?php echo base_url(); ?>bookings">
+              <a href="<?php echo base_url(); ?>booking">
                 <i class="fa fa-anchor"></i>
-                <span>Bookings</span>
+                <span>Booking</span>
               </a>
             </li>
               <?php
