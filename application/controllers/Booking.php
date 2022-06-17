@@ -4,7 +4,7 @@ require APPPATH . '/libraries/BaseController.php';
 
 /**
  * Class : Booking (BookingController)
- * Booking Class to control role related operations.
+ * Booking Class to control booking related operations.
  * @author : Kishor Mali
  * @version : 1.5
  * @since : 18 Jun 2022
@@ -19,6 +19,7 @@ class Booking extends BaseController
         parent::__construct();
         $this->load->model('Booking_model', 'bm');
         $this->isLoggedIn();
+        $this->module = 'Booking';
     }
 
     /**
@@ -31,11 +32,11 @@ class Booking extends BaseController
     }
     
     /**
-     * This function is used to load the role list
+     * This function is used to load the booking list
      */
     function bookingListing()
     {
-        if(!$this->isAdmin())
+        if(!$this->hasListAccess())
         {
             $this->loadThis();
         }
@@ -63,7 +64,7 @@ class Booking extends BaseController
      */
     function add()
     {
-        if(!$this->isAdmin())
+        if(!$this->hasCreateAccess())
         {
             $this->loadThis();
         }
@@ -80,7 +81,7 @@ class Booking extends BaseController
      */
     function addNewBooking()
     {
-        if(!$this->isAdmin())
+        if(!$this->hasCreateAccess())
         {
             $this->loadThis();
         }
@@ -122,7 +123,7 @@ class Booking extends BaseController
      */
     function edit($bookingId = NULL)
     {
-        if(!$this->isAdmin())
+        if(!$this->hasUpdateAccess())
         {
             $this->loadThis();
         }
@@ -147,7 +148,7 @@ class Booking extends BaseController
      */
     function editBooking()
     {
-        if(!$this->isAdmin())
+        if(!$this->hasUpdateAccess())
         {
             $this->loadThis();
         }

@@ -10,7 +10,7 @@
 class Booking_model extends CI_Model
 {
     /**
-     * This function is used to get the roomName listing count
+     * This function is used to get the booking listing count
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
@@ -29,7 +29,7 @@ class Booking_model extends CI_Model
     }
     
     /**
-     * This function is used to get the roomName listing count
+     * This function is used to get the booking listing count
      * @param string $searchText : This is optional search text
      * @param number $page : This is pagination offset
      * @param number $segment : This is pagination limit
@@ -53,7 +53,7 @@ class Booking_model extends CI_Model
     }
     
     /**
-     * This function is used to add new roomName to system
+     * This function is used to add new booking to system
      * @return number $insert_id : This is last inserted id
      */
     function addNewBooking($bookingInfo)
@@ -69,9 +69,9 @@ class Booking_model extends CI_Model
     }
     
     /**
-     * This function used to get roomName information by id
-     * @param number $bookingId : This is roomName id
-     * @return array $result : This is roomName information
+     * This function used to get booking information by id
+     * @param number $bookingId : This is booking id
+     * @return array $result : This is booking information
      */
     function getBookingInfo($bookingId)
     {
@@ -86,9 +86,9 @@ class Booking_model extends CI_Model
     
     
     /**
-     * This function is used to update the roomName information
-     * @param array $bookingInfo : This is roomName updated information
-     * @param number $bookingId : This is roomName id
+     * This function is used to update the booking information
+     * @param array $bookingInfo : This is booking updated information
+     * @param number $bookingId : This is booking id
      */
     function editBooking($bookingInfo, $bookingId)
     {
