@@ -60,24 +60,13 @@ class BaseController extends CI_Controller {
 	 * This function is used to check the access
 	 */
 	function isAdmin() {
-		if ($this->role == SYSTEM_ADMIN) {
+		if ($this->isAdmin == SYSTEM_ADMIN) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	/**
-	 * This function is used to check the access
-	 */
-	function isTicketter() {
-		if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
+
 	/**
 	 * This function is used to load the set of views
 	 */

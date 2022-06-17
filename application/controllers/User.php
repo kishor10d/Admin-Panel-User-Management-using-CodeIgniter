@@ -18,7 +18,7 @@ class User extends BaseController
     {
         parent::__construct();
         $this->load->model('user_model');
-        $this->isLoggedIn();   
+        $this->isLoggedIn();
     }
     
     /**
