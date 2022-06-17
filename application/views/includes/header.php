@@ -166,14 +166,14 @@
             ?>
             <?php
             if($is_admin == 1 ||
-                (array_key_exists('Bookings', $access_info) 
-                && ($access_info['Bookings']['list'] == 1 || $access_info['Bookings']['total_access'] == 1)))
+                (array_key_exists('Booking', $access_info) 
+                && ($access_info['Booking']['list'] == 1 || $access_info['Booking']['total_access'] == 1)))
             {
               ?>
             <li>
-              <a href="<?php echo base_url(); ?>bookings">
-                <i class="fa fa-users"></i>
-                <span>Bookings</span>
+              <a href="<?php echo base_url(); ?>booking">
+                <i class="fa fa-anchor"></i>
+                <span>Booking</span>
               </a>
             </li>
               <?php
@@ -187,7 +187,7 @@
               ?>
             <li>
               <a href="<?php echo base_url(); ?>tasks">
-                <i class="fa fa-users"></i>
+                <i class="fa fa-tasks"></i>
                 <span>Tasks</span>
               </a>
             </li>

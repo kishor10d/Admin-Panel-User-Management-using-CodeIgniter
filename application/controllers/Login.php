@@ -71,7 +71,7 @@ class Login extends CI_Controller
 
                 $accessInfo = $this->accessInfo($result->roleId);
 
-                $sessionArray = array('userId'=>$result->userId,                    
+                $sessionArray = array('userId'=>$result->userId,
                                         'role'=>$result->roleId,
                                         'roleText'=>$result->role,
                                         'name'=>$result->name,

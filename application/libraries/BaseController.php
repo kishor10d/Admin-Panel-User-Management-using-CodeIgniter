@@ -16,18 +16,13 @@ class BaseController extends CI_Controller {
 	protected $accessInfo = [];
 	protected $global = array ();
 	protected $lastLogin = '';
-	
+	protected $module = '';
+
 	/**
-	 * Takes mixed data and optionally a status code, then creates the response
-	 *
-	 * @access public
-	 * @param array|NULL $data
-	 *        	Data to output to the user
-	 *        	running the script; otherwise, exit
+	 * This is default constructor
 	 */
-	public function response($data = NULL) {
-		$this->output->set_status_header ( 200 )->set_content_type ( 'application/json', 'utf-8' )->set_output ( json_encode ( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) )->_display ();
-		exit ();
+	public function __construct() {
+		parent::__construct();
 	}
 	
 	/**
@@ -60,24 +55,69 @@ class BaseController extends CI_Controller {
 	 * This function is used to check the access
 	 */
 	function isAdmin() {
-		if ($this->role == SYSTEM_ADMIN) {
+		if ($this->isAdmin == SYSTEM_ADMIN) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
-	 * This function is used to check the access
+	 * This function is used to check the user having list access or not
 	 */
-	function isTicketter() {
-		if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
+	protected function hasListAccess() {
+		if ($this->isAdmin() ||
+			(array_key_exists($this->module, $this->accessInfo) 
+			&& ($this->accessInfo[$this->module]['list'] == 1 
+			|| $this->accessInfo[$this->module]['total_access'] == 1)))
+		{
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
-	
+
+	/**
+	 * This function is used to check the user having create access or not
+	 */
+	protected function hasCreateAccess() {
+		if ($this->isAdmin() ||
+			(array_key_exists($this->module, $this->accessInfo) 
+			&& ($this->accessInfo[$this->module]['create_records'] == 1 
+			|| $this->accessInfo[$this->module]['total_access'] == 1)))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * This function is used to check the user having update access or not
+	 */
+	protected function hasUpdateAccess() {
+		if ($this->isAdmin() ||
+			(array_key_exists($this->module, $this->accessInfo) 
+			&& ($this->accessInfo[$this->module]['edit_records'] == 1 
+			|| $this->accessInfo[$this->module]['total_access'] == 1)))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * This function is used to check the user having delete access or not
+	 */
+	protected function hasDeleteAccess() {
+		if ($this->isAdmin() ||
+			(array_key_exists($this->module, $this->accessInfo) 
+			&& ($this->accessInfo[$this->module]['delete_records'] == 1 
+			|| $this->accessInfo[$this->module]['total_access'] == 1)))
+		{
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * This function is used to load the set of views
 	 */
@@ -94,7 +134,6 @@ class BaseController extends CI_Controller {
 	 */
 	function logout() {
 		$this->session->sess_destroy ();
-		
 		redirect ( 'login' );
 	}
 
@@ -152,8 +191,8 @@ class BaseController extends CI_Controller {
 		$segment = $this->uri->segment ( $segment );
 	
 		return array (
-				"page" => $page,
-				"segment" => $segment
+			"page" => $page,
+			"segment" => $segment
 		);
 	}
 }
