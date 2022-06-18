@@ -155,12 +155,6 @@
                 <span>Roles</span>
               </a>
             </li>
-            <li>
-              <a href="#" >
-                <i class="fa fa-files-o"></i>
-                <span>Reports</span>
-              </a>
-            </li>
             <?php
             }
             ?>
@@ -186,7 +180,7 @@
             {
               ?>
             <li>
-              <a href="<?php echo base_url(); ?>tasks">
+              <a href="<?php echo base_url(); ?>task">
                 <i class="fa fa-tasks"></i>
                 <span>Tasks</span>
               </a>
