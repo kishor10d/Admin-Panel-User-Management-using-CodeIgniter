@@ -88,7 +88,6 @@
                         </td>
                         <td><?php echo date("d-m-Y", strtotime($record->createdDtm)) ?></td>
                         <td class="text-center">
-                            <a class="btn btn-sm btn-primary" href="<?= base_url().'roles/access/'.$record->roleId; ?>" title="Login history"><i class="fa fa-history"></i></a> | 
                             <a class="btn btn-sm btn-info" href="<?php echo base_url().'roles/edit/'.$record->roleId; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-sm btn-danger deleteRole" href="#" data-roleid="<?php echo $record->roleId; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
