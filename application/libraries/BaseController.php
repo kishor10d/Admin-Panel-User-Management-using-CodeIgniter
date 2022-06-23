@@ -125,7 +125,7 @@ class BaseController extends CI_Controller {
 		$this->global ['pageTitle'] = 'CodeInsect : Access Denied';
 		
 		$this->load->view ( 'includes/header', $this->global );
-		$this->load->view ( 'access' );
+		$this->load->view ( 'general/access' );
 		$this->load->view ( 'includes/footer' );
 	}
 	

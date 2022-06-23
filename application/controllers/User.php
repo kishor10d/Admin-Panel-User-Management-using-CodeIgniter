@@ -28,7 +28,7 @@ class User extends BaseController
     {
         $this->global['pageTitle'] = 'CodeInsect : Dashboard';
         
-        $this->loadViews("dashboard", $this->global, NULL , NULL);
+        $this->loadViews("general/dashboard", $this->global, NULL , NULL);
     }
     
     /**
@@ -55,7 +55,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : User Listing';
             
-            $this->loadViews("users", $this->global, $data, NULL);
+            $this->loadViews("users/users", $this->global, $data, NULL);
         }
     }
 
@@ -75,7 +75,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : Add New User';
 
-            $this->loadViews("addNew", $this->global, $data, NULL);
+            $this->loadViews("users/addNew", $this->global, $data, NULL);
         }
     }
 
@@ -171,7 +171,7 @@ class User extends BaseController
 
             $this->global['pageTitle'] = 'CodeInsect : Edit User';
             
-            $this->loadViews("editOld", $this->global, $data, NULL);
+            $this->loadViews("users/editOld", $this->global, $data, NULL);
         }
     }
     
@@ -271,7 +271,7 @@ class User extends BaseController
     {
         $this->global['pageTitle'] = 'CodeInsect : 404 - Page Not Found';
         
-        $this->loadViews("404", $this->global, NULL, NULL);
+        $this->loadViews("general/404", $this->global, NULL, NULL);
     }
 
     /**
@@ -308,7 +308,7 @@ class User extends BaseController
             
             $this->global['pageTitle'] = 'CodeInsect : User Login History';
             
-            $this->loadViews("loginHistory", $this->global, $data, NULL);
+            $this->loadViews("users/loginHistory", $this->global, $data, NULL);
         }        
     }
 
@@ -321,7 +321,7 @@ class User extends BaseController
         $data["active"] = $active;
         
         $this->global['pageTitle'] = $active == "details" ? 'CodeInsect : My Profile' : 'CodeInsect : Change Password';
-        $this->loadViews("profile", $this->global, $data, NULL);
+        $this->loadViews("users/profile", $this->global, $data, NULL);
     }
 
     /**
