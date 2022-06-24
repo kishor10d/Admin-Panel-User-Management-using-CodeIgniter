@@ -66,9 +66,8 @@ class User_model extends CI_Model
      */
     function getUserRoles()
     {
-        $this->db->select('roleId, role');
+        $this->db->select('roleId, role, status as roleStatus');
         $this->db->from('tbl_roles');
-        // $this->db->where('roleId !=', 1);
         $query = $this->db->get();
         
         return $query->result();

@@ -80,8 +80,14 @@ $isAdmin = $userInfo->isAdmin;
                                             {
                                                 foreach ($roles as $rl)
                                                 {
+                                                    $roleText = $rl->role;
+                                                    $roleClass = false;
+                                                    if ($rl->roleStatus == INACTIVE) {
+                                                        $roleText = $rl->role . ' (Inactive)';
+                                                        $roleClass = true;
+                                                    }
                                                     ?>
-                                                    <option value="<?php echo $rl->roleId; ?>" <?php if($rl->roleId == $roleId) {echo "selected=selected";} ?>><?php echo $rl->role ?></option>
+                                                    <option value="<?php echo $rl->roleId; ?>" <?php if ($roleClass) { echo "class=text-warning"; } ?>  <?php if($rl->roleId == $roleId) { echo "selected=selected";} ?>><?= $roleText ?></option>
                                                     <?php
                                                 }
                                             }
