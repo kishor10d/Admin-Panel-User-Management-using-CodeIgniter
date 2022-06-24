@@ -27,7 +27,7 @@ class Roles extends BaseController
      */
     public function index()
     {
-        redirect('roleListing/');
+        redirect('roles/roleListing');
     }
     
     /**
@@ -48,7 +48,7 @@ class Roles extends BaseController
             
             $count = $this->rm->roleListingCount($searchText);
 
-			$returns = $this->paginationCompress ( "roleListing/", $count, 10 );
+			$returns = $this->paginationCompress ( "roles/roleListing/", $count, 10 );
             
             $data['roleRecords'] = $this->rm->roleListing($searchText, $returns["page"], $returns["segment"]);
             
@@ -159,8 +159,6 @@ class Roles extends BaseController
             $roleAccessMatrix = $this->rm->getRoleAccessMatrix($roleId);
             $data['roleAccessMatrix'] = json_decode($roleAccessMatrix->access);
             $data['moduleList'] = $this->config->item('moduleList');
-
-            // pre($data); die;
             
             $this->global['pageTitle'] = 'CodeInsect : Edit Role';
             

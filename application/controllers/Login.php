@@ -64,9 +64,17 @@ class Login extends CI_Controller
             $password = $this->input->post('password');
             
             $result = $this->login_model->loginMe($email, $password);
+
+            //pre($result); die;
             
-            if(!empty($result))
+            if (!empty($result))
             {
+                if ($result->isAdmin != SYSTEM_ADMIN && ($result->roleStatus == 2 || $result->isRoleDeleted == 1))
+                {
+                    $this->session->set_flashdata('error', 'The user doesn\'t have any role or the role is deactivated');
+                    redirect('login');
+                }
+
                 $lastLogin = $this->login_model->lastLoginInfo($result->userId);
 
                 $accessInfo = $this->accessInfo($result->roleId);
@@ -94,8 +102,7 @@ class Login extends CI_Controller
             else
             {
                 $this->session->set_flashdata('error', 'Email or password mismatch');
-                
-                $this->index();
+                redirect('login');
             }
         }
     }
