@@ -14,7 +14,7 @@ class Task_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function taskListingCount($searchText = '')
+    function taskListingCount($searchText)
     {
         $this->db->select('BaseTbl.taskId, BaseTbl.taskTitle, BaseTbl.description, BaseTbl.createdDtm');
         $this->db->from('tbl_task as BaseTbl');
@@ -35,7 +35,7 @@ class Task_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function taskListing($searchText = '', $page, $segment)
+    function taskListing($searchText, $page, $segment)
     {
         $this->db->select('BaseTbl.taskId, BaseTbl.taskTitle, BaseTbl.description, BaseTbl.createdDtm');
         $this->db->from('tbl_task as BaseTbl');

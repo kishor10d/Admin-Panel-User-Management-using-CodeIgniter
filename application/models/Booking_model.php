@@ -14,7 +14,7 @@ class Booking_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function bookingListingCount($searchText = '')
+    function bookingListingCount($searchText)
     {
         $this->db->select('BaseTbl.bookingId, BaseTbl.roomName, BaseTbl.description, BaseTbl.createdDtm');
         $this->db->from('tbl_booking as BaseTbl');
@@ -35,7 +35,7 @@ class Booking_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function bookingListing($searchText = '', $page, $segment)
+    function bookingListing($searchText, $page, $segment)
     {
         $this->db->select('BaseTbl.bookingId, BaseTbl.roomName, BaseTbl.description, BaseTbl.createdDtm');
         $this->db->from('tbl_booking as BaseTbl');

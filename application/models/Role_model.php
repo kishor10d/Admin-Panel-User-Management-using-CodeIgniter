@@ -14,7 +14,7 @@ class Role_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function roleListingCount($searchText = '')
+    function roleListingCount($searchText)
     {
         $this->db->select('BaseTbl.roleId, BaseTbl.role, BaseTbl.status, BaseTbl.createdDtm');
         $this->db->from('tbl_roles as BaseTbl');
@@ -35,7 +35,7 @@ class Role_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function roleListing($searchText = '', $page, $segment)
+    function roleListing($searchText, $page, $segment)
     {
         $this->db->select('BaseTbl.roleId, BaseTbl.role, BaseTbl.status, BaseTbl.createdDtm');
         $this->db->from('tbl_roles as BaseTbl');

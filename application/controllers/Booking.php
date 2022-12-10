@@ -41,8 +41,11 @@ class Booking extends BaseController
             $this->loadThis();
         }
         else
-        {        
-            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+        {
+            $searchText = '';
+            if(!empty($this->input->post('searchText'))) {
+                $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            }
             $data['searchText'] = $searchText;
             
             $this->load->library('pagination');
