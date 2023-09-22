@@ -188,7 +188,9 @@ class Role_model extends CI_Model
         return $result;
     }
 
-
+    /**
+     * This method is used to insert default access rights when a role gets created
+     */
     function insertAccessMatrix($accessMatrix)
     {
         $this->db->trans_start();
@@ -196,6 +198,9 @@ class Role_model extends CI_Model
         $this->db->trans_complete();
     }
 
+    /**
+     * This method is used to get access rights information for super admin
+     */
     function getFromAccessMatrix2()
     {
         $this->db->select('*');
@@ -207,6 +212,10 @@ class Role_model extends CI_Model
         return $result;
     }
 
+    /**
+     * This method is used to generate access matrix from configuration
+     * and insert into database
+     */
     function generateMatrix()
     {
         $this->db->select('*');
@@ -239,6 +248,11 @@ class Role_model extends CI_Model
         }
     }
 
+    /**
+     * This method used to update the access rights for role
+     * @param number $roleId : This is role id
+     * @param string $accessMatrix : This is JSON string access matrix
+     */
     function updateAccessMatrix($roleId, $accessMatrix)
     {
         $this->db->where('roleId', $roleId);

@@ -264,6 +264,11 @@ class Login extends CI_Controller
         }
     }
 
+    /**
+     * This method use to build access information for modules from json to array.
+     * @param number $roleId: This is role id
+     * @return array $finalMatrixArray: This is converted array
+     */
     private function accessInfo($roleId)
     {
         $finalMatrixArray = [];
