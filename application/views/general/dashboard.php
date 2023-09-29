@@ -63,4 +63,11 @@
             </div><!-- ./col -->
           </div>
     </section>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Modules <span style="color:red"> "Booking" </span> & <span style="color:red"> "Tasks" </span> created to demonstrate Roles Access.</h3>
+        </div>
+      </div>
+    </section>
 </div>

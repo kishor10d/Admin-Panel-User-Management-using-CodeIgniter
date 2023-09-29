@@ -98,6 +98,13 @@
             </div>
         </div>
     </section>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Modules <span style="color:red"> "Booking" </span> & <span style="color:red"> "Tasks" </span> created to demonstrate Roles Access.</h3>
+        </div>
+      </div>
+    </section>
 </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
 <script type="text/javascript">
