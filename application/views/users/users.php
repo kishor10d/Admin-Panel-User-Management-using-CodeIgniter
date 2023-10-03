@@ -68,6 +68,7 @@
                         <th>Email</th>
                         <th>Mobile</th>
                         <th>Role</th>
+						<th>Type</th>
                         <th>Created On</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -81,7 +82,8 @@
                         <td><?php echo $record->name ?></td>
                         <td><?php echo $record->email ?></td>
                         <td><?php echo $record->mobile ?></td>
-                        <td><?php echo $record->role; if($record->roleStatus == INACTIVE) { echo ' <span class="label label-warning">Inactive</span>'; } ?></td>
+                        <td><?php echo $record->role; if($record->roleStatus == INACTIVE) { echo ' <br><span class="label label-warning">Inactive</span>'; } ?></td>
+						<td><?php if($record->isAdmin == SYSTEM_ADMIN) { echo 'System Administrator'; } else if($record->isAdmin == REGULAR_USER) { echo 'Regular User'; } ?></td>
                         <td><?php echo date("d-m-Y", strtotime($record->createdDtm)) ?></td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-primary" href="<?= base_url().'login-history/'.$record->userId; ?>" title="Login history"><i class="fa fa-history"></i></a> | 
