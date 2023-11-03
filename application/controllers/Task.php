@@ -92,8 +92,8 @@ class Task extends BaseController
         {
             $this->load->library('form_validation');
             
-            $this->form_validation->set_rules('taskTitle','Task Title','trim|required|max_length[256]');
-            $this->form_validation->set_rules('description','Description','trim|required|max_length[1024]');
+            $this->form_validation->set_rules('taskTitle','Task Title','trim|callback_html_clean|required|max_length[256]');
+            $this->form_validation->set_rules('description','Description','trim|callback_html_clean|required|max_length[1024]');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -161,8 +161,8 @@ class Task extends BaseController
             
             $taskId = $this->input->post('taskId');
             
-            $this->form_validation->set_rules('taskTitle','Task Title','trim|required|max_length[256]');
-            $this->form_validation->set_rules('description','Description','trim|required|max_length[1024]');
+            $this->form_validation->set_rules('taskTitle','Task Title','trim|callback_html_clean|required|max_length[256]');
+            $this->form_validation->set_rules('description','Description','trim|callback_html_clean|required|max_length[1024]');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -189,6 +189,11 @@ class Task extends BaseController
                 redirect('task/taskListing');
             }
         }
+    }
+
+    public function html_clean($s, $v)
+    {
+        return strip_tags((string) $s);
     }
 }
 
