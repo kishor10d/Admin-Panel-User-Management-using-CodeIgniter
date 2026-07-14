@@ -118,7 +118,7 @@ class Roles extends BaseController
             }
             else
             {
-                $roleText = $this->security->xss_clean($this->input->post('role'));
+                $roleText = cleanData($this->security->xss_clean($this->input->post('role')));
                 $status = $this->security->xss_clean($this->input->post('status'));
                 
                 $roleInfo = array('role'=>$roleText, 'status'=>$status, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
@@ -194,7 +194,7 @@ class Roles extends BaseController
             }
             else
             {
-                $roleText = $this->security->xss_clean($this->input->post('role'));
+                $roleText = cleanData($this->security->xss_clean($this->input->post('role')));
                 $status = $this->security->xss_clean($this->input->post('status'));
                 
                 $roleInfo = array('role'=>$roleText, 'status'=>$status, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));

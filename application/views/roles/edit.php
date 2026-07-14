@@ -1,6 +1,6 @@
 <?php
 $roleId = $roleInfo->roleId;
-$role = $roleInfo->role;
+$role = html_escape($roleInfo->role);
 $status = $roleInfo->status;
 ?>
 

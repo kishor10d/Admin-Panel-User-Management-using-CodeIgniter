@@ -118,7 +118,7 @@ class User extends BaseController
             $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|numeric|min_length[10]');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -128,9 +128,12 @@ class User extends BaseController
             {
                 $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $email = strtolower($this->security->xss_clean($this->input->post('email')));
+                $name = cleanData($name);
+                $email = cleanData($email);
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
+                $mobile = cleanData($mobile);
                 $isAdmin = $this->input->post('isAdmin');
                 
                 $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
@@ -199,7 +202,7 @@ class User extends BaseController
             $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|numeric|min_length[10]');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -209,9 +212,12 @@ class User extends BaseController
             {
                 $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $email = strtolower($this->security->xss_clean($this->input->post('email')));
+                $name = cleanData($name);
+                $email = cleanData($email);
                 $password = $this->input->post('password');
                 $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
+                $mobile = cleanData($mobile);
                 $isAdmin = $this->input->post('isAdmin');
                 
                 $userInfo = array();
@@ -348,6 +354,9 @@ class User extends BaseController
             $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
             $mobile = $this->security->xss_clean($this->input->post('mobile'));
             $email = strtolower($this->security->xss_clean($this->input->post('email')));
+            $name = cleanData($name);
+            $email = cleanData($email);
+            $mobile = cleanData($mobile);
             
             $userInfo = array('name'=>$name, 'email'=>$email, 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
             

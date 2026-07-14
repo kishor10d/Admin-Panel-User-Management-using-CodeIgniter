@@ -149,4 +149,12 @@ if(!function_exists('setFlashData'))
     }
 }
 
+if(!function_exists('cleanData'))
+{
+    function cleanData($data)
+    {
+        return html_escape(strip_tags($data));
+    }
+}
+
 ?>
